@@ -1,0 +1,1 @@
+# XTBPlugins.DeltaAssemblyvsCrm
