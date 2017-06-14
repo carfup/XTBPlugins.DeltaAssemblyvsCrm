@@ -133,9 +133,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="XrmToolBox.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="XrmToolBox.exe.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DeltaAssemblyvsCrm.resx">
