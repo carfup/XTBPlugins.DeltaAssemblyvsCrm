@@ -1,7 +1,7 @@
 ﻿<package>
   <metadata>
     <id>Carfup.XTBPlugins.DeltaAssemblyvsCrm</id>
-    <version>{version}</version>
+    <version>$version$</version>
     <title>Delta Assembly vs CRM</title>
     <authors>Clement O.</authors>
     <owners>Clement O.</owners>
