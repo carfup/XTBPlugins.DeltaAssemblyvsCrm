@@ -6,12 +6,11 @@
     <authors>Clement O.</authors>
     <owners>Clement O.</owners>
     <projectUrl>https://github.com/carfup/XTBPlugins.DeltaAssemblyvsCrm</projectUrl>
-    <iconUrl></iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Find out which Plugin differences you have between your CRM Assembly and your Local one.</description>
     <summary>Really sweet plugin that does awesome things</summary>
     <releaseNotes>
-       
+       First version :)
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>DeltaAssemblyvsCrm</tags>
