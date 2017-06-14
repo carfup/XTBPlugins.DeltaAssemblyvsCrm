@@ -1,0 +1,25 @@
+﻿<package>
+  <metadata>
+    <id>Carfup.XTBPlugins.DeltaAssemblyvsCrm</id>
+    <version>1.0</version>
+    <title>Delta Plugins : Local Assembly vs CRM</title>
+    <authors>Clement O.</authors>
+    <owners>Clement O.</owners>
+    <projectUrl>https://github.com/carfup/XTBPlugins.DeltaAssemblyvsCrm</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Find out which Plugin differences you have between your CRM Assembly and your Local one.</description>
+    <summary>Really sweet plugin that does awesome things</summary>
+    <releaseNotes>
+       1.2017.6.1
+       Compare plugins contained into your local assembly against the plugins on your CRM assembly
+    </releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>XrmToolBox Plugin DeltaAssemblyvsCrm</tags>
+    <dependencies>
+      <dependency id="XrmToolBox" version="1.2017.6.16" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Carfup.XTBPlugins.*.dll" target="lib\net452\Plugins" />
+  </files>
+</package>

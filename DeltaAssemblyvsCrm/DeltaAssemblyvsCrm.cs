@@ -13,11 +13,13 @@ using Microsoft.Xrm.Sdk;
 using System.Reflection;
 using System.Web.UI.WebControls;
 using System.IO;
+using XrmToolBox.Extensibility.Interfaces;
 
 namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 {
-	public partial class DeltaAssemblyvsCrm : PluginControlBase
+	public partial class DeltaAssemblyvsCrm : PluginControlBase, IGitHubPlugin
 	{
+		#region varibables
 		public string assemblyName = "";
 		private string[] listOfCRMAssemblies = null;
 		private string[] listOfPluginsInCRM = null;
@@ -25,18 +27,27 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 		private string[] inCRMButAssembly = null;
 		private string[] inAssemblyButCRM = null;
 
-		public DeltaAssemblyvsCrm()
+		public string RepositoryName
 		{
-			InitializeComponent();
-
-			initDisplayItems();
-			
+			get
+			{
+				return "XTBPlugins.DeltaAssemblyvsCrm";
+			}
 		}
 
-		public void initDisplayItems()
+		public string UserName
 		{
-			//tabControl1.Width = 
-			//tabControl1.Height = Unit.Percentage(100);
+			get
+			{
+				return "carfup";
+			}
+		}
+
+		#endregion
+
+		public DeltaAssemblyvsCrm()
+		{
+			InitializeComponent();			
 		}
 
 		private void toolStripButtonLoadPluginStepsClick(object sender, EventArgs evt)
