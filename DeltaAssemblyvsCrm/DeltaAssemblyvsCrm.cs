@@ -47,8 +47,9 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
 		public DeltaAssemblyvsCrm()
 		{
-			InitializeComponent();			
-		}
+			InitializeComponent();
+            tabControl1.TabPages.Remove(tabPageResult);
+        }
 
 		private void toolStripButtonLoadPluginStepsClick(object sender, EventArgs evt)
 		{
@@ -141,8 +142,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					if(listOfPluginsInAssembly != null)
 						listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsInAssembly);
 
-					if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
-						toolStripButtonCompare.Visible = true;
+                    if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
+                    {
+                        toolStripButtonCompare.Visible = true;
+                        tabControl1.TabPages.Add(tabPageResult);
+                    }
 				},
 				ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
 			});
@@ -243,7 +247,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 						listBoxPluginTypes.Items.AddRange(listOfPluginsInCRM);
 
 					if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
-						toolStripButtonCompare.Visible = true;
+                    {
+                        toolStripButtonCompare.Visible = true;
+                        tabControl1.TabPages.Add(tabPageResult);
+                    }
+						
 				},
 				ProgressChanged = e => { SetWorkingMessage(e.UserState.ToString()); }
 			});
