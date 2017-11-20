@@ -10,11 +10,11 @@
     <description>Find out which Plugin differences you have between your CRM Assembly and your Local one.</description>
     <summary>Really sweet plugin that does awesome things</summary>
     <releaseNotes>
-		1.2017.11.1
-		Added an auto resize of the panel.
-		Improved few background processes.
-       1.2017.6.1
-       Compare plugins contained into your local assembly against the plugins on your CRM assembly
+1.2017.11.1
+Added an auto resize of the panel.
+Improved few background processes.
+1.2017.6.1
+Compare plugins contained into your local assembly against the plugins on your CRM assembly
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>XrmToolBox Plugin DeltaAssemblyvsCrm</tags>
