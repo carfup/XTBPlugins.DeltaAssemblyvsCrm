@@ -35,10 +35,17 @@
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listBoxPluginTypesAssembly = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxPluginTypes = new System.Windows.Forms.ListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.listBoxPluginTypesAssembly = new System.Windows.Forms.ListBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxAssemblyList = new System.Windows.Forms.ComboBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.labelLoadAssembly = new System.Windows.Forms.Label();
+            this.buttonLoadAssembly = new System.Windows.Forms.Button();
             this.tabPageResult = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.labelAssemblyButCRMMatch = new System.Windows.Forms.Label();
@@ -46,24 +53,17 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelCrmButAssemblyMatch = new System.Windows.Forms.Label();
             this.listBoxInCRMButAssembly = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxAssemblyList = new System.Windows.Forms.ComboBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.labelLoadAssembly = new System.Windows.Forms.Label();
-            this.buttonLoadAssembly = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.tabPageResult.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -135,30 +135,25 @@
             this.tabPageLoad.Text = "Load your stuff";
             this.tabPageLoad.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // tableLayoutPanel1
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.listBoxPluginTypesAssembly);
-            this.groupBox2.Location = new System.Drawing.Point(557, 60);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(548, 486);
-            this.groupBox2.TabIndex = 13;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Assembly Plugins list";
-            // 
-            // listBoxPluginTypesAssembly
-            // 
-            this.listBoxPluginTypesAssembly.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxPluginTypesAssembly.FormattingEnabled = true;
-            this.listBoxPluginTypesAssembly.Location = new System.Drawing.Point(6, 17);
-            this.listBoxPluginTypesAssembly.Name = "listBoxPluginTypesAssembly";
-            this.listBoxPluginTypesAssembly.Size = new System.Drawing.Size(536, 446);
-            this.listBoxPluginTypesAssembly.TabIndex = 9;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox5, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox6, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1108, 549);
+            this.tableLayoutPanel1.TabIndex = 14;
             // 
             // groupBox1
             // 
@@ -184,6 +179,97 @@
             this.listBoxPluginTypes.Name = "listBoxPluginTypes";
             this.listBoxPluginTypes.Size = new System.Drawing.Size(533, 446);
             this.listBoxPluginTypes.TabIndex = 6;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.AutoSize = true;
+            this.groupBox2.Controls.Add(this.listBoxPluginTypesAssembly);
+            this.groupBox2.Location = new System.Drawing.Point(557, 60);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(548, 486);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Assembly Plugins list";
+            // 
+            // listBoxPluginTypesAssembly
+            // 
+            this.listBoxPluginTypesAssembly.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxPluginTypesAssembly.FormattingEnabled = true;
+            this.listBoxPluginTypesAssembly.Location = new System.Drawing.Point(6, 17);
+            this.listBoxPluginTypesAssembly.Name = "listBoxPluginTypesAssembly";
+            this.listBoxPluginTypesAssembly.Size = new System.Drawing.Size(536, 446);
+            this.listBoxPluginTypesAssembly.TabIndex = 9;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.comboBoxAssemblyList);
+            this.groupBox5.Location = new System.Drawing.Point(3, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(548, 51);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "CRM Assembly";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Select your CRM Assembly:";
+            // 
+            // comboBoxAssemblyList
+            // 
+            this.comboBoxAssemblyList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAssemblyList.FormattingEnabled = true;
+            this.comboBoxAssemblyList.Location = new System.Drawing.Point(155, 12);
+            this.comboBoxAssemblyList.Name = "comboBoxAssemblyList";
+            this.comboBoxAssemblyList.Size = new System.Drawing.Size(329, 21);
+            this.comboBoxAssemblyList.TabIndex = 11;
+            this.comboBoxAssemblyList.SelectedIndexChanged += new System.EventHandler(this.comboBoxAssemblyList_Changed);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.labelLoadAssembly);
+            this.groupBox6.Controls.Add(this.buttonLoadAssembly);
+            this.groupBox6.Location = new System.Drawing.Point(557, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(548, 51);
+            this.groupBox6.TabIndex = 15;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Local Assembly";
+            // 
+            // labelLoadAssembly
+            // 
+            this.labelLoadAssembly.AutoSize = true;
+            this.labelLoadAssembly.Location = new System.Drawing.Point(186, 22);
+            this.labelLoadAssembly.Name = "labelLoadAssembly";
+            this.labelLoadAssembly.Size = new System.Drawing.Size(35, 13);
+            this.labelLoadAssembly.TabIndex = 9;
+            this.labelLoadAssembly.Text = "label2";
+            this.labelLoadAssembly.Visible = false;
+            // 
+            // buttonLoadAssembly
+            // 
+            this.buttonLoadAssembly.Location = new System.Drawing.Point(6, 16);
+            this.buttonLoadAssembly.Name = "buttonLoadAssembly";
+            this.buttonLoadAssembly.Size = new System.Drawing.Size(165, 23);
+            this.buttonLoadAssembly.TabIndex = 8;
+            this.buttonLoadAssembly.Text = "Load your local assembly";
+            this.buttonLoadAssembly.UseVisualStyleBackColor = true;
+            this.buttonLoadAssembly.Click += new System.EventHandler(this.buttonLoadAssemblyClick);
             // 
             // tabPageResult
             // 
@@ -269,90 +355,6 @@
             this.listBoxInCRMButAssembly.TabIndex = 14;
             this.listBoxInCRMButAssembly.Visible = false;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox5, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox6, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1108, 549);
-            this.tableLayoutPanel1.TabIndex = 14;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.comboBoxAssemblyList);
-            this.groupBox5.Location = new System.Drawing.Point(3, 3);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(548, 51);
-            this.groupBox5.TabIndex = 14;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "CRM Assembly";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Select your CRM Assembly:";
-            // 
-            // comboBoxAssemblyList
-            // 
-            this.comboBoxAssemblyList.FormattingEnabled = true;
-            this.comboBoxAssemblyList.Location = new System.Drawing.Point(155, 12);
-            this.comboBoxAssemblyList.Name = "comboBoxAssemblyList";
-            this.comboBoxAssemblyList.Size = new System.Drawing.Size(329, 21);
-            this.comboBoxAssemblyList.TabIndex = 11;
-            this.comboBoxAssemblyList.SelectedIndexChanged += new System.EventHandler(this.comboBoxAssemblyList_Changed);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.labelLoadAssembly);
-            this.groupBox6.Controls.Add(this.buttonLoadAssembly);
-            this.groupBox6.Location = new System.Drawing.Point(557, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(548, 51);
-            this.groupBox6.TabIndex = 15;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Local Assembly";
-            // 
-            // labelLoadAssembly
-            // 
-            this.labelLoadAssembly.AutoSize = true;
-            this.labelLoadAssembly.Location = new System.Drawing.Point(186, 22);
-            this.labelLoadAssembly.Name = "labelLoadAssembly";
-            this.labelLoadAssembly.Size = new System.Drawing.Size(35, 13);
-            this.labelLoadAssembly.TabIndex = 9;
-            this.labelLoadAssembly.Text = "label2";
-            this.labelLoadAssembly.Visible = false;
-            // 
-            // buttonLoadAssembly
-            // 
-            this.buttonLoadAssembly.Location = new System.Drawing.Point(6, 16);
-            this.buttonLoadAssembly.Name = "buttonLoadAssembly";
-            this.buttonLoadAssembly.Size = new System.Drawing.Size(165, 23);
-            this.buttonLoadAssembly.TabIndex = 8;
-            this.buttonLoadAssembly.Text = "Load your local assembly";
-            this.buttonLoadAssembly.UseVisualStyleBackColor = true;
-            this.buttonLoadAssembly.Click += new System.EventHandler(this.buttonLoadAssemblyClick);
-            // 
             // DeltaAssemblyvsCrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,19 +369,19 @@
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageLoad.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.tabPageResult.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

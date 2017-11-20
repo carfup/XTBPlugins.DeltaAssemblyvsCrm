@@ -48,7 +48,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 		public DeltaAssemblyvsCrm()
 		{
 			InitializeComponent();
-            tabControl1.TabPages.Remove(tabPageResult);
+            if (tabControl1.TabPages.Contains(tabPageResult))
+                tabControl1.TabPages.Remove(tabPageResult);
         }
 
 		private void toolStripButtonLoadPluginStepsClick(object sender, EventArgs evt)
@@ -103,56 +104,66 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 			listBoxPluginTypesAssembly.Items.Clear();
 
 			// opening the dialog box to select the dll
-			openFileDialogLoadAssembly.ShowDialog();
-			string filepath = openFileDialogLoadAssembly.FileName;
-			labelLoadAssembly.Visible = true;
-			labelLoadAssembly.Text = $"Your assembly : {filepath.Split('\\').Last()}";
+            if(openFileDialogLoadAssembly.ShowDialog() == DialogResult.OK)
+            { 
+			    string filepath = openFileDialogLoadAssembly.FileName;
 
-			AppDomain domain = AppDomain.CreateDomain(labelLoadAssembly.Text);
+                if (!filepath.Split('\\').Last().EndsWith(".dll"))
+                {
+                    MessageBox.Show(this, "Please select an assembly file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            
+                labelLoadAssembly.Visible = true;
+			    labelLoadAssembly.Text = $"Your assembly : {filepath.Split('\\').Last()}";           
 
-			System.IO.StreamReader reader = new System.IO.StreamReader(filepath, System.Text.Encoding.GetEncoding(1252), false);
+                AppDomain domain = AppDomain.CreateDomain(labelLoadAssembly.Text);
 
-			byte[] b = new byte[reader.BaseStream.Length];
-			reader.BaseStream.Read(b, 0, System.Convert.ToInt32(reader.BaseStream.Length));
+			    System.IO.StreamReader reader = new System.IO.StreamReader(filepath, System.Text.Encoding.GetEncoding(1252), false);
 
-			reader.Close();
+			    byte[] b = new byte[reader.BaseStream.Length];
+			    reader.BaseStream.Read(b, 0, System.Convert.ToInt32(reader.BaseStream.Length));
 
+			    reader.Close();
+            
+			    WorkAsync(new WorkAsyncInfo
+			    {
+				    Message = "Loading the assembly Plugins...",
+				    Work = (bw, evt) =>
+				    {
+					    listOfPluginsInAssembly = Assembly.Load(b).GetTypes()
+					    .Where(t => !(t.FullName.Contains("<>c")) && (t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))))
+					    .Select(t => t.FullName)
+					    .ToArray();					
+				    },
+				    PostWorkCallBack = evt =>
+				    {
+					    if (evt.Error != null)
+					    {
+						    MessageBox.Show(this, evt.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						    return;
+					    }
 
-			WorkAsync(new WorkAsyncInfo
-			{
-				Message = "loading the assembly Plugins...",
-				Work = (bw, evt) =>
-				{
-					listOfPluginsInAssembly = Assembly.Load(b).GetTypes()
-					.Where(t => !(t.FullName.Contains("<>c")) && (t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))))
-					.Select(t => t.FullName)
-					.ToArray();
+					    if(listOfPluginsInAssembly != null)
+						    listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsInAssembly);
 
-					
-					
-				},
-				PostWorkCallBack = evt =>
-				{
-					if (evt.Error != null)
-					{
-						MessageBox.Show(this, evt.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return;
-					}
+                        if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
+                        {
+                            toolStripButtonCompare.Visible = true;
+                            if (!tabControl1.TabPages.Contains(tabPageResult))
+                                tabControl1.TabPages.Add(tabPageResult);
+                        }
+				    },
+				    ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
+			    });
 
-					if(listOfPluginsInAssembly != null)
-						listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsInAssembly);
-
-                    if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
-                    {
-                        toolStripButtonCompare.Visible = true;
-                        tabControl1.TabPages.Add(tabPageResult);
-                    }
-				},
-				ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
-			});
-
-			AppDomain.Unload(domain);
-		}
+			    AppDomain.Unload(domain);
+            }
+            else
+            {
+                labelLoadAssembly.Text = "";
+            }
+        }
 
 		private void toolStripButtonCompare_Click(object sender, EventArgs e)
 		{
@@ -249,7 +260,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
                     {
                         toolStripButtonCompare.Visible = true;
-                        tabControl1.TabPages.Add(tabPageResult);
+                        if(!tabControl1.TabPages.Contains(tabPageResult))
+                            tabControl1.TabPages.Add(tabPageResult);
                     }
 						
 				},
