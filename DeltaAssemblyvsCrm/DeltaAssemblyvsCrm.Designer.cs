@@ -53,6 +53,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelCrmButAssemblyMatch = new System.Windows.Forms.Label();
             this.listBoxInCRMButAssembly = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -64,6 +65,7 @@
             this.tabPageResult.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -273,8 +275,7 @@
             // 
             // tabPageResult
             // 
-            this.tabPageResult.Controls.Add(this.groupBox4);
-            this.tabPageResult.Controls.Add(this.groupBox3);
+            this.tabPageResult.Controls.Add(this.tableLayoutPanel2);
             this.tabPageResult.Location = new System.Drawing.Point(4, 22);
             this.tabPageResult.Name = "tabPageResult";
             this.tabPageResult.Padding = new System.Windows.Forms.Padding(3);
@@ -285,13 +286,14 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.labelAssemblyButCRMMatch);
             this.groupBox4.Controls.Add(this.listBoxInAssemblyButCRM);
-            this.groupBox4.Location = new System.Drawing.Point(536, 6);
+            this.groupBox4.Location = new System.Drawing.Point(551, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(578, 549);
+            this.groupBox4.Size = new System.Drawing.Size(542, 543);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Plugins which are in your assembly but not in your CRM";
@@ -310,24 +312,26 @@
             // 
             // listBoxInAssemblyButCRM
             // 
-            this.listBoxInAssemblyButCRM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBoxInAssemblyButCRM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxInAssemblyButCRM.FormattingEnabled = true;
             this.listBoxInAssemblyButCRM.Location = new System.Drawing.Point(6, 19);
             this.listBoxInAssemblyButCRM.Name = "listBoxInAssemblyButCRM";
-            this.listBoxInAssemblyButCRM.Size = new System.Drawing.Size(566, 524);
+            this.listBoxInAssemblyButCRM.Size = new System.Drawing.Size(530, 511);
             this.listBoxInAssemblyButCRM.TabIndex = 2;
             this.listBoxInAssemblyButCRM.Visible = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.labelCrmButAssemblyMatch);
             this.groupBox3.Controls.Add(this.listBoxInCRMButAssembly);
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(524, 549);
+            this.groupBox3.Size = new System.Drawing.Size(542, 543);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Plugins which are in your CRM but not in your assembly";
@@ -346,14 +350,32 @@
             // 
             // listBoxInCRMButAssembly
             // 
-            this.listBoxInCRMButAssembly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBoxInCRMButAssembly.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxInCRMButAssembly.FormattingEnabled = true;
             this.listBoxInCRMButAssembly.Location = new System.Drawing.Point(6, 19);
             this.listBoxInCRMButAssembly.Name = "listBoxInCRMButAssembly";
-            this.listBoxInCRMButAssembly.Size = new System.Drawing.Size(512, 524);
+            this.listBoxInCRMButAssembly.Size = new System.Drawing.Size(512, 511);
             this.listBoxInCRMButAssembly.TabIndex = 14;
             this.listBoxInCRMButAssembly.Visible = false;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 6);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1096, 549);
+            this.tableLayoutPanel2.TabIndex = 16;
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -382,6 +404,7 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,5 +437,6 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label labelLoadAssembly;
         private System.Windows.Forms.Button buttonLoadAssembly;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
