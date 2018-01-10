@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Web.UI.WebControls;
 using System.IO;
 using XrmToolBox.Extensibility.Interfaces;
+using System.Activities;
 
 namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 {
@@ -24,7 +25,9 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 		private string[] listOfCRMAssemblies = null;
 		private string[] listOfPluginsInCRM = null;
 		private string[] listOfPluginsInAssembly = null;
-		private string[] inCRMButAssembly = null;
+        private List<Entity> listOfPluginsTypesInCRM = null;
+        private List<Type> listOfPluginsTypeInAssembly = null;
+        private string[] inCRMButAssembly = null;
 		private string[] inAssemblyButCRM = null;
 
 		public string RepositoryName
@@ -66,7 +69,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					Message = "Loading CRM Assemblies...",
 					Work = (bw, e) =>
 					{
-						listOfCRMAssemblies = Service.RetrieveMultiple(new QueryExpression("pluginassembly")
+                        listOfCRMAssemblies = Service.RetrieveMultiple(new QueryExpression("pluginassembly")
 						{
 							ColumnSet = new ColumnSet(true),
 							Criteria = new FilterExpression
@@ -77,8 +80,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 									new ConditionExpression("name", ConditionOperator.DoesNotBeginWith, "ActivityFeeds.")
 									}
 							}
-						}).Entities.Select(p => p.Attributes["name"].ToString()).ToArray();
-					},
+						}).Entities.Select(p => p.Attributes["name"].ToString()).OrderBy(n => n).ToArray();
+                    },
 					PostWorkCallBack = e =>
 					{
 						if (e.Error != null)
@@ -131,11 +134,15 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 				    Message = "Loading the assembly Plugins...",
 				    Work = (bw, evt) =>
 				    {
-					    listOfPluginsInAssembly = Assembly.Load(b).GetTypes()
-					    .Where(t => !(t.FullName.Contains("<>c")) && (t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))))
-					    .Select(t => t.FullName)
-					    .ToArray();					
-				    },
+                        listOfPluginsTypeInAssembly = Assembly.Load(b).GetTypes()
+                        .Where(
+                            t => !(t.FullName.Contains("<>c")) && // standards classes
+                            (
+                                t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))  // plugins
+                                || (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
+                            )
+                        ).ToList();
+                    },
 				    PostWorkCallBack = evt =>
 				    {
 					    if (evt.Error != null)
@@ -144,15 +151,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 						    return;
 					    }
 
-					    if(listOfPluginsInAssembly != null)
-						    listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsInAssembly);
+					    if(listOfPluginsTypeInAssembly != null)
+						    listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray());
 
                         if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
-                        {
                             toolStripButtonCompare.Visible = true;
-                            if (!tabControl1.TabPages.Contains(tabPageResult))
-                                tabControl1.TabPages.Add(tabPageResult);
-                        }
 				    },
 				    ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
 			    });
@@ -167,59 +170,10 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
 		private void toolStripButtonCompare_Click(object sender, EventArgs e)
 		{
-			// we clear the content of the list first
-			listBoxInAssemblyButCRM.Items.Clear();
-			listBoxInCRMButAssembly.Items.Clear();
+            if (!tabControl1.TabPages.Contains(tabPageResult))
+                tabControl1.TabPages.Add(tabPageResult);
 
-			WorkAsync(new WorkAsyncInfo
-			{
-				Message = "Comparing Plugins...",
-				Work = (bw, evt) =>
-				{
-					inCRMButAssembly = listOfPluginsInCRM.Except(listOfPluginsInAssembly).ToArray();
-					inAssemblyButCRM = listOfPluginsInAssembly.Except(listOfPluginsInCRM).ToArray();
-
-					
-				},
-				PostWorkCallBack = evt =>
-				{
-					if (evt.Error != null)
-					{
-						MessageBox.Show(this, evt.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return;
-					}
-
-					if (inCRMButAssembly != null && inAssemblyButCRM != null)
-					{
-						if (inCRMButAssembly.Count() == 0)
-						{
-							listBoxInCRMButAssembly.Visible = false;
-							labelCrmButAssemblyMatch.Visible = true;
-						}
-						else
-						{
-							listBoxInCRMButAssembly.Visible = true;
-							listBoxInCRMButAssembly.Items.AddRange(inCRMButAssembly);
-							labelCrmButAssemblyMatch.Visible = false;
-
-						}
-
-						if (inAssemblyButCRM.Count() == 0)
-						{
-							listBoxInAssemblyButCRM.Visible = false;
-							labelAssemblyButCRMMatch.Visible = true;
-						}
-						else
-						{
-							listBoxInAssemblyButCRM.Items.AddRange(inAssemblyButCRM);
-							listBoxInAssemblyButCRM.Visible = true;
-							labelAssemblyButCRMMatch.Visible = false;
-						}
-						tabControl1.SelectedTab = tabPageResult;
-					}
-				},
-				ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
-			});
+            manageListToDisplay();
 		}
 
 		private void comboBoxAssemblyList_Changed(object sender, EventArgs evt)
@@ -234,18 +188,20 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 				Message = "Loading Plugins...",
 				Work = (bw, e) =>
 				{
-				listOfPluginsInCRM = Service.RetrieveMultiple(new QueryExpression("plugintype")
-				{
-					ColumnSet = new ColumnSet(true),
-					Criteria = new FilterExpression
-					{
-						Conditions =
-								{
-									new ConditionExpression("assemblyname", ConditionOperator.Equal, assemblyname)
-								}
-						}
-					}).Entities.Select(p => p.Attributes["typename"].ToString()).ToArray();
-				},
+                    listOfPluginsTypesInCRM = Service.RetrieveMultiple(new QueryExpression("plugintype")
+                    {
+                        ColumnSet = new ColumnSet("name", "isworkflowactivity", "typename"),
+
+                        Criteria = new FilterExpression
+                        {
+                            Conditions =
+                            {
+                                new ConditionExpression("assemblyname", ConditionOperator.Equal, assemblyname)
+                            }
+                        }
+                    }).Entities.ToList();
+
+                },
 				PostWorkCallBack = e =>
 				{
 					if (e.Error != null)
@@ -254,16 +210,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 						return;
 					}
 
-					if (listOfPluginsInCRM != null)
-						listBoxPluginTypes.Items.AddRange(listOfPluginsInCRM);
+					if (listOfPluginsTypesInCRM != null)
+						listBoxPluginTypes.Items.AddRange(listOfPluginsTypesInCRM.Select(p => p.Attributes["typename"].ToString()).ToArray());
 
 					if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
-                    {
-                        toolStripButtonCompare.Visible = true;
-                        if(!tabControl1.TabPages.Contains(tabPageResult))
-                            tabControl1.TabPages.Add(tabPageResult);
-                    }
-						
+                        toolStripButtonCompare.Visible = true;						
 				},
 				ProgressChanged = e => { SetWorkingMessage(e.UserState.ToString()); }
 			});
@@ -273,5 +224,99 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 		{
 			CloseTool();
 		}
-	}
+
+        public object returnAliasedValue(Entity entity, string varName)
+        {
+            return entity.GetAttributeValue<AliasedValue>(varName) == null ? "" : entity.GetAttributeValue<AliasedValue>(varName).Value;
+        }
+
+        private void checkBoxComparePlugins_CheckedChanged(object sender, EventArgs e)
+        {
+            manageListToDisplay();
+        }
+
+        private void checkBoxCompareWorkflows_CheckedChanged(object sender, EventArgs e)
+        {
+            manageListToDisplay();
+        }
+
+        public void manageListToDisplay()
+        {
+            // we clear the content of the list first
+            listBoxInAssemblyButCRM.Items.Clear();
+            listBoxInCRMButAssembly.Items.Clear();
+
+            List<Entity> inCrmToCompare = new List<Entity>();
+            List<Type> inAssemblyToCompare = new List<Type>();
+
+            WorkAsync(new WorkAsyncInfo
+            {
+                Message = "Comparing Plugins...",
+                Work = (bw, evt) =>
+                {
+                    // We have at least one workflow
+                    if (listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").Count() == 0)
+                    {
+                        checkBoxCompareWorkflows.Checked = false;
+                        checkBoxCompareWorkflows.Enabled = false;
+                    }
+
+                    // managing what to compare
+                    if (checkBoxComparePlugins.Checked)
+                    {
+                        inCrmToCompare.AddRange(listOfPluginsTypesInCRM.Where(x => (bool)x.Attributes["isworkflowactivity"] == false).ToList());
+                        inAssemblyToCompare.AddRange(listOfPluginsTypeInAssembly.Where(t => t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))).ToList());
+                    }
+                    
+                    if(checkBoxCompareWorkflows.Checked)
+                    {
+                        inCrmToCompare.AddRange(listOfPluginsTypesInCRM.Where(x => (bool)x.Attributes["isworkflowactivity"] == true).ToList());
+                        inAssemblyToCompare.AddRange(listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").ToList());
+                    }
+
+                    inCRMButAssembly = inCrmToCompare.Select(x => x.Attributes["name"].ToString()).Except(inAssemblyToCompare.Select(x => x.FullName)).ToArray();
+                    inAssemblyButCRM = inAssemblyToCompare.Select(x => x.FullName).Except(inCrmToCompare.Select(x => x.Attributes["name"].ToString())).ToArray(); 
+                },
+                PostWorkCallBack = evt =>
+                {
+                    if (evt.Error != null)
+                    {
+                        MessageBox.Show(this, evt.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (inCRMButAssembly != null && inAssemblyButCRM != null)
+                    {
+                        if (inCRMButAssembly.Count() == 0)
+                        {
+                            listBoxInCRMButAssembly.Visible = false;
+                            labelCrmButAssemblyMatch.Visible = true;
+                        }
+                        else
+                        {
+                            listBoxInCRMButAssembly.Visible = true;
+                            listBoxInCRMButAssembly.Items.AddRange(inCRMButAssembly);
+                            labelCrmButAssemblyMatch.Visible = false;
+
+                        }
+
+                        if (inAssemblyButCRM.Count() == 0)
+                        {
+                            listBoxInAssemblyButCRM.Visible = false;
+                            labelAssemblyButCRMMatch.Visible = true;
+                        }
+                        else
+                        {
+                            listBoxInAssemblyButCRM.Items.AddRange(inAssemblyButCRM);
+                            listBoxInAssemblyButCRM.Visible = true;
+                            labelAssemblyButCRMMatch.Visible = false;
+                        }
+
+                        tabControl1.SelectedTab = tabPageResult;
+                    }
+                },
+                ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
+            });         
+        }
+    }
 }

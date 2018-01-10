@@ -47,13 +47,16 @@
             this.labelLoadAssembly = new System.Windows.Forms.Label();
             this.buttonLoadAssembly = new System.Windows.Forms.Button();
             this.tabPageResult = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.labelAssemblyButCRMMatch = new System.Windows.Forms.Label();
-            this.listBoxInAssemblyButCRM = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelCrmButAssemblyMatch = new System.Windows.Forms.Label();
             this.listBoxInCRMButAssembly = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.labelAssemblyButCRMMatch = new System.Windows.Forms.Label();
+            this.listBoxInAssemblyButCRM = new System.Windows.Forms.ListBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
+            this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -63,9 +66,10 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabPageResult.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -179,7 +183,7 @@
             this.listBoxPluginTypes.FormattingEnabled = true;
             this.listBoxPluginTypes.Location = new System.Drawing.Point(9, 17);
             this.listBoxPluginTypes.Name = "listBoxPluginTypes";
-            this.listBoxPluginTypes.Size = new System.Drawing.Size(533, 446);
+            this.listBoxPluginTypes.Size = new System.Drawing.Size(533, 459);
             this.listBoxPluginTypes.TabIndex = 6;
             // 
             // groupBox2
@@ -204,7 +208,7 @@
             this.listBoxPluginTypesAssembly.FormattingEnabled = true;
             this.listBoxPluginTypesAssembly.Location = new System.Drawing.Point(6, 17);
             this.listBoxPluginTypesAssembly.Name = "listBoxPluginTypesAssembly";
-            this.listBoxPluginTypesAssembly.Size = new System.Drawing.Size(536, 446);
+            this.listBoxPluginTypesAssembly.Size = new System.Drawing.Size(536, 459);
             this.listBoxPluginTypesAssembly.TabIndex = 9;
             // 
             // groupBox5
@@ -223,7 +227,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 16);
+            this.label4.Location = new System.Drawing.Point(4, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 13);
             this.label4.TabIndex = 12;
@@ -234,7 +238,7 @@
             this.comboBoxAssemblyList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxAssemblyList.FormattingEnabled = true;
-            this.comboBoxAssemblyList.Location = new System.Drawing.Point(155, 12);
+            this.comboBoxAssemblyList.Location = new System.Drawing.Point(153, 19);
             this.comboBoxAssemblyList.Name = "comboBoxAssemblyList";
             this.comboBoxAssemblyList.Size = new System.Drawing.Size(329, 21);
             this.comboBoxAssemblyList.TabIndex = 11;
@@ -284,43 +288,24 @@
             this.tabPageResult.Text = "See the result";
             this.tabPageResult.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // tableLayoutPanel2
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.labelAssemblyButCRMMatch);
-            this.groupBox4.Controls.Add(this.listBoxInAssemblyButCRM);
-            this.groupBox4.Location = new System.Drawing.Point(551, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(542, 543);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Plugins which are in your assembly but not in your CRM";
-            // 
-            // labelAssemblyButCRMMatch
-            // 
-            this.labelAssemblyButCRMMatch.AutoSize = true;
-            this.labelAssemblyButCRMMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAssemblyButCRMMatch.ForeColor = System.Drawing.Color.Green;
-            this.labelAssemblyButCRMMatch.Location = new System.Drawing.Point(116, 97);
-            this.labelAssemblyButCRMMatch.Name = "labelAssemblyButCRMMatch";
-            this.labelAssemblyButCRMMatch.Size = new System.Drawing.Size(302, 31);
-            this.labelAssemblyButCRMMatch.TabIndex = 16;
-            this.labelAssemblyButCRMMatch.Text = "This is a perfect match !";
-            this.labelAssemblyButCRMMatch.Visible = false;
-            // 
-            // listBoxInAssemblyButCRM
-            // 
-            this.listBoxInAssemblyButCRM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxInAssemblyButCRM.FormattingEnabled = true;
-            this.listBoxInAssemblyButCRM.Location = new System.Drawing.Point(6, 19);
-            this.listBoxInAssemblyButCRM.Name = "listBoxInAssemblyButCRM";
-            this.listBoxInAssemblyButCRM.Size = new System.Drawing.Size(530, 511);
-            this.listBoxInAssemblyButCRM.TabIndex = 2;
-            this.listBoxInAssemblyButCRM.Visible = false;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox7, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 6);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1096, 549);
+            this.tableLayoutPanel2.TabIndex = 16;
             // 
             // groupBox3
             // 
@@ -329,9 +314,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.labelCrmButAssemblyMatch);
             this.groupBox3.Controls.Add(this.listBoxInCRMButAssembly);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Location = new System.Drawing.Point(3, 46);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(542, 543);
+            this.groupBox3.Size = new System.Drawing.Size(542, 500);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Plugins which are in your CRM but not in your assembly";
@@ -356,26 +341,86 @@
             this.listBoxInCRMButAssembly.FormattingEnabled = true;
             this.listBoxInCRMButAssembly.Location = new System.Drawing.Point(6, 19);
             this.listBoxInCRMButAssembly.Name = "listBoxInCRMButAssembly";
-            this.listBoxInCRMButAssembly.Size = new System.Drawing.Size(512, 511);
+            this.listBoxInCRMButAssembly.Size = new System.Drawing.Size(512, 459);
             this.listBoxInCRMButAssembly.TabIndex = 14;
             this.listBoxInCRMButAssembly.Visible = false;
             // 
-            // tableLayoutPanel2
+            // groupBox4
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 6);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1096, 549);
-            this.tableLayoutPanel2.TabIndex = 16;
+            this.groupBox4.Controls.Add(this.labelAssemblyButCRMMatch);
+            this.groupBox4.Controls.Add(this.listBoxInAssemblyButCRM);
+            this.groupBox4.Location = new System.Drawing.Point(551, 46);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(542, 500);
+            this.groupBox4.TabIndex = 15;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Plugins which are in your assembly but not in your CRM";
+            // 
+            // labelAssemblyButCRMMatch
+            // 
+            this.labelAssemblyButCRMMatch.AutoSize = true;
+            this.labelAssemblyButCRMMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAssemblyButCRMMatch.ForeColor = System.Drawing.Color.Green;
+            this.labelAssemblyButCRMMatch.Location = new System.Drawing.Point(116, 97);
+            this.labelAssemblyButCRMMatch.Name = "labelAssemblyButCRMMatch";
+            this.labelAssemblyButCRMMatch.Size = new System.Drawing.Size(302, 31);
+            this.labelAssemblyButCRMMatch.TabIndex = 16;
+            this.labelAssemblyButCRMMatch.Text = "This is a perfect match !";
+            this.labelAssemblyButCRMMatch.Visible = false;
+            // 
+            // listBoxInAssemblyButCRM
+            // 
+            this.listBoxInAssemblyButCRM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxInAssemblyButCRM.FormattingEnabled = true;
+            this.listBoxInAssemblyButCRM.Location = new System.Drawing.Point(6, 19);
+            this.listBoxInAssemblyButCRM.Name = "listBoxInAssemblyButCRM";
+            this.listBoxInAssemblyButCRM.Size = new System.Drawing.Size(530, 459);
+            this.listBoxInAssemblyButCRM.TabIndex = 2;
+            this.listBoxInAssemblyButCRM.Visible = false;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.checkBoxCompareWorkflows);
+            this.groupBox7.Controls.Add(this.checkBoxComparePlugins);
+            this.groupBox7.Location = new System.Drawing.Point(3, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(542, 37);
+            this.groupBox7.TabIndex = 16;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "What to compare ?";
+            // 
+            // checkBoxComparePlugins
+            // 
+            this.checkBoxComparePlugins.AutoSize = true;
+            this.checkBoxComparePlugins.Checked = true;
+            this.checkBoxComparePlugins.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxComparePlugins.Location = new System.Drawing.Point(115, 14);
+            this.checkBoxComparePlugins.Name = "checkBoxComparePlugins";
+            this.checkBoxComparePlugins.Size = new System.Drawing.Size(60, 17);
+            this.checkBoxComparePlugins.TabIndex = 0;
+            this.checkBoxComparePlugins.Text = "Plugins";
+            this.checkBoxComparePlugins.UseVisualStyleBackColor = true;
+            this.checkBoxComparePlugins.CheckedChanged += new System.EventHandler(this.checkBoxComparePlugins_CheckedChanged);
+            // 
+            // checkBoxCompareWorkflows
+            // 
+            this.checkBoxCompareWorkflows.AutoSize = true;
+            this.checkBoxCompareWorkflows.Checked = true;
+            this.checkBoxCompareWorkflows.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxCompareWorkflows.Location = new System.Drawing.Point(208, 14);
+            this.checkBoxCompareWorkflows.Name = "checkBoxCompareWorkflows";
+            this.checkBoxCompareWorkflows.Size = new System.Drawing.Size(76, 17);
+            this.checkBoxCompareWorkflows.TabIndex = 1;
+            this.checkBoxCompareWorkflows.Text = "Workflows";
+            this.checkBoxCompareWorkflows.UseVisualStyleBackColor = true;
+            this.checkBoxCompareWorkflows.CheckedChanged += new System.EventHandler(this.checkBoxCompareWorkflows_CheckedChanged);
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -400,11 +445,13 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabPageResult.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,5 +485,8 @@
         private System.Windows.Forms.Label labelLoadAssembly;
         private System.Windows.Forms.Button buttonLoadAssembly;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckBox checkBoxCompareWorkflows;
+        private System.Windows.Forms.CheckBox checkBoxComparePlugins;
     }
 }
