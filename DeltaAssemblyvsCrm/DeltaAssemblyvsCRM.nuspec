@@ -13,6 +13,7 @@
     <releaseNotes>
 1.2018.1.14
 Integration of the workflows in the assembly comparaison.
+Ability to either compare Plugins and workflows or only one of each based on what is in your assembly.
 1.2017.11.1
 Added an auto resize of the panel.
 Improved few background processes.
