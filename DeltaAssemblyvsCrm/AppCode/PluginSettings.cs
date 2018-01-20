@@ -29,15 +29,15 @@ namespace Carfup.XTBPlugins.AppCode
     // EventType to qualify which action was performed by the plugin
     static class LogAction
     {
-        public const string ClosingPlugin = "Closing Plugin";
-        public const string AcceptingStats = "Accepting Stats";
-        public const string DenyingStats = "Denying Stats";
-        public const string SavingSettings = "Saving Settings";
-        public const string LoadingSettings = "Loading Settings";
-        public const string ComparingSolutions = "Comparing Solutions";
-        public const string LoadingCRMAssemblies = "Loading CRM Assemblies";
-        public const string LoadingAssembly = "Loading Assembly";
-        public const string LoadingPlugins = "Loading Plugins";
-        public const string ComparingPlugins = "Comparing Plugins";
+        public const string PluginClosed = "PluginClosed";
+        public const string StatsAccepted = "StatsAccepted";
+        public const string StatsDenied = "StatsDenied";
+        public const string SettingsSaved = "SettingsSaved";
+        public const string SettingLoaded = "SettingLoaded";
+        public const string SolutionsCompared = "SolutionsCompared";
+        public const string CRMAssembliesLoaded = "CRMAssembliesLoaded";
+        public const string AssemblyLoaded = "AssemblyLoaded";
+        public const string PluginsLoaded = "PluginsLoaded";
+        public const string PluginsCompared = "PluginsCompared";
     }
 }
