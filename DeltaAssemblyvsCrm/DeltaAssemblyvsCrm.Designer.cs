@@ -29,9 +29,6 @@
 		private void InitializeComponent()
 		{
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
@@ -55,8 +52,12 @@
             this.labelAssemblyButCRMMatch = new System.Windows.Forms.Label();
             this.listBoxInAssemblyButCRM = new System.Windows.Forms.ListBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
+            this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
+            this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -77,41 +78,13 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonCloseTool,
             this.toolStripButtonLoadPluginSteps,
-            this.toolStripButtonCompare});
+            this.toolStripButtonCompare,
+            this.toolStripButtonOptions});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1134, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButtonCloseTool
-            // 
-            this.toolStripButtonCloseTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCloseTool.Image = global::Carfup.XTBPlugins.Properties.Resources.close;
-            this.toolStripButtonCloseTool.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCloseTool.Name = "toolStripButtonCloseTool";
-            this.toolStripButtonCloseTool.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonCloseTool.Text = "toolStripButton1";
-            this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
-            // 
-            // toolStripButtonLoadPluginSteps
-            // 
-            this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
-            this.toolStripButtonLoadPluginSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonLoadPluginSteps.Name = "toolStripButtonLoadPluginSteps";
-            this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
-            this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
-            this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
-            // 
-            // toolStripButtonCompare
-            // 
-            this.toolStripButtonCompare.Image = global::Carfup.XTBPlugins.Properties.Resources.compare;
-            this.toolStripButtonCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCompare.Name = "toolStripButtonCompare";
-            this.toolStripButtonCompare.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButtonCompare.Text = "Compare";
-            this.toolStripButtonCompare.Visible = false;
-            this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -396,19 +369,6 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "What to compare ?";
             // 
-            // checkBoxComparePlugins
-            // 
-            this.checkBoxComparePlugins.AutoSize = true;
-            this.checkBoxComparePlugins.Checked = true;
-            this.checkBoxComparePlugins.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxComparePlugins.Location = new System.Drawing.Point(115, 14);
-            this.checkBoxComparePlugins.Name = "checkBoxComparePlugins";
-            this.checkBoxComparePlugins.Size = new System.Drawing.Size(60, 17);
-            this.checkBoxComparePlugins.TabIndex = 0;
-            this.checkBoxComparePlugins.Text = "Plugins";
-            this.checkBoxComparePlugins.UseVisualStyleBackColor = true;
-            this.checkBoxComparePlugins.CheckedChanged += new System.EventHandler(this.checkBoxComparePlugins_CheckedChanged);
-            // 
             // checkBoxCompareWorkflows
             // 
             this.checkBoxCompareWorkflows.AutoSize = true;
@@ -422,6 +382,57 @@
             this.checkBoxCompareWorkflows.UseVisualStyleBackColor = true;
             this.checkBoxCompareWorkflows.CheckedChanged += new System.EventHandler(this.checkBoxCompareWorkflows_CheckedChanged);
             // 
+            // checkBoxComparePlugins
+            // 
+            this.checkBoxComparePlugins.AutoSize = true;
+            this.checkBoxComparePlugins.Checked = true;
+            this.checkBoxComparePlugins.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxComparePlugins.Location = new System.Drawing.Point(115, 14);
+            this.checkBoxComparePlugins.Name = "checkBoxComparePlugins";
+            this.checkBoxComparePlugins.Size = new System.Drawing.Size(60, 17);
+            this.checkBoxComparePlugins.TabIndex = 0;
+            this.checkBoxComparePlugins.Text = "Plugins";
+            this.checkBoxComparePlugins.UseVisualStyleBackColor = true;
+            this.checkBoxComparePlugins.CheckedChanged += new System.EventHandler(this.checkBoxComparePlugins_CheckedChanged);
+            // 
+            // toolStripButtonCloseTool
+            // 
+            this.toolStripButtonCloseTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCloseTool.Image = global::Carfup.XTBPlugins.Properties.Resources.close;
+            this.toolStripButtonCloseTool.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCloseTool.Name = "toolStripButtonCloseTool";
+            this.toolStripButtonCloseTool.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonCloseTool.Text = "toolStripButton1";
+            this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
+            // 
+            // toolStripButtonLoadPluginSteps
+            // 
+            this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
+            this.toolStripButtonLoadPluginSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoadPluginSteps.Name = "toolStripButtonLoadPluginSteps";
+            this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
+            this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
+            this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
+            // 
+            // toolStripButtonCompare
+            // 
+            this.toolStripButtonCompare.Image = global::Carfup.XTBPlugins.Properties.Resources.compare;
+            this.toolStripButtonCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCompare.Name = "toolStripButtonCompare";
+            this.toolStripButtonCompare.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButtonCompare.Text = "Compare";
+            this.toolStripButtonCompare.Visible = false;
+            this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
+            // 
+            // toolStripButtonOptions
+            // 
+            this.toolStripButtonOptions.Image = global::Carfup.XTBPlugins.Properties.Resources.gear;
+            this.toolStripButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonOptions.Name = "toolStripButtonOptions";
+            this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
+            this.toolStripButtonOptions.Text = "Options";
+            this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
+            // 
             // DeltaAssemblyvsCrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -432,6 +443,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "DeltaAssemblyvsCrm";
             this.Size = new System.Drawing.Size(1134, 618);
+            this.Load += new System.EventHandler(this.DeltaAssemblyvsCrm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -488,5 +500,6 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.CheckBox checkBoxCompareWorkflows;
         private System.Windows.Forms.CheckBox checkBoxComparePlugins;
+        private System.Windows.Forms.ToolStripButton toolStripButtonOptions;
     }
 }
