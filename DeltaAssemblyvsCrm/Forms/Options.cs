@@ -28,16 +28,28 @@ namespace Carfup.XTBPlugins.Forms
                 settings = new PluginSettings();
             }
 
-            //checkboxAllowStats.Checked = settings.AllowLogUsage != false;
+            checkboxAllowStats.Checked = settings.AllowLogUsage != false;
         }
 
         internal PluginSettings GetSettings()
         {
             var settings = this.deltaVsCRM.settings;
-            //settings.AllowLogUsage = checkboxAllowStats.Checked;
+            settings.AllowLogUsage = checkboxAllowStats.Checked;
             settings.CurrentVersion = this.deltaVsCRM.CurrentVersion;
 
             return settings;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            this.deltaVsCRM.settings = GetSettings();
+            this.deltaVsCRM.SaveSettings();
+            this.Close();
         }
     }
 }
