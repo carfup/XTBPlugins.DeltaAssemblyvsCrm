@@ -1,7 +1,7 @@
 ﻿<package>
   <metadata>
     <id>Carfup.XTBPlugins.DeltaAssemblyvsCrm</id>
-    <version>1.2018.1.14</version>
+    <version>1.2018.1.15</version>
     <title>Delta Plugins : Local Assembly vs CRM</title>
     <authors>Clement O.</authors>
     <owners>Clement O.</owners>
@@ -11,12 +11,17 @@
     <description>Find out which Plugin differences you have between your CRM Assembly and your Local one.</description>
     <summary>Really sweet plugin that does awesome things</summary>
     <releaseNotes>
+1.2018.1.15
+Allow the plugin to log anonymous data or not, in order to improve the most used features and develop the others.
+
 1.2018.1.14
 Integration of the workflows in the assembly comparaison.
 Ability to either compare Plugins and workflows or only one of each based on what is in your assembly.
+
 1.2017.11.1
 Added an auto resize of the panel.
 Improved few background processes.
+
 1.2017.6.1
 Compare plugins contained into your local assembly against the plugins on your CRM assembly
 	</releaseNotes>
@@ -27,6 +32,6 @@ Compare plugins contained into your local assembly against the plugins on your C
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Carfup.XTBPlugins.*.dll" target="lib\net452\Plugins" />
+    <file src="bin\Release\Carfup.XTBPlugins.*.dll" target="lib\net462\Plugins" />
   </files>
 </package>
