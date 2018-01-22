@@ -184,8 +184,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             if (!tabControl1.TabPages.Contains(tabPageResult))
                 tabControl1.TabPages.Add(tabPageResult);
 
-            manageListToDisplay();
-		}
+            ExecuteMethod(manageListToDisplay);
+        }
 
 		private void comboBoxAssemblyList_Changed(object sender, EventArgs evt)
 		{
@@ -255,12 +255,12 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
         private void checkBoxComparePlugins_CheckedChanged(object sender, EventArgs e)
         {
-            manageListToDisplay();
+            ExecuteMethod(manageListToDisplay);
         }
 
         private void checkBoxCompareWorkflows_CheckedChanged(object sender, EventArgs e)
         {
-            manageListToDisplay();
+            ExecuteMethod(manageListToDisplay);
         }
 
         public void manageListToDisplay()
