@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using XrmToolBox.Extensibility;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk;
 using System.Reflection;
-using System.Web.UI.WebControls;
-using System.IO;
 using XrmToolBox.Extensibility.Interfaces;
-using System.Activities;
 using Carfup.XTBPlugins.AppCode;
 using System.Diagnostics;
 using Carfup.XTBPlugins.Forms;
@@ -366,15 +359,23 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 {
                     return;
                 }
+                else
+                    settings = new PluginSettings();
+
             }
             catch (InvalidOperationException ex)
             {
                 this.log.LogData(EventType.Exception, LogAction.SettingLoaded, ex);
             }
-            settings = new PluginSettings();
+            
+            if (!settings.AllowLogUsage.HasValue)
+            {
+                LogUsage.PromptToLog();;
+                this.SaveSettings();
+            }
         }
 
-        public string CurrentVersion
+        public static string CurrentVersion
         {
             get
             {

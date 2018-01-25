@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
 
@@ -24,7 +19,7 @@ namespace Carfup.XTBPlugins.AppCode
 
             TelemetryConfiguration.Active.InstrumentationKey = CustomParameter.INSIGHTS_INTRUMENTATIONKEY;
             this.telemetry = new TelemetryClient();
-            this.telemetry.Context.Component.Version = this.deltaVsCRM.CurrentVersion;
+            this.telemetry.Context.Component.Version = DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion;
             this.telemetry.Context.Device.Id = this.deltaVsCRM.GetType().Name;
         }
 
@@ -75,6 +70,15 @@ namespace Carfup.XTBPlugins.AppCode
                 dictionary.Add("action", action);
 
             return dictionary;
+        }
+
+        internal static void PromptToLog()
+        {
+            var msg = "Anonymous statistics will be collected to improve plugin functionalities \n\n" +
+                      "You can change this setting in plugin options anytime.\n\n" +
+                      "Thanks!";
+
+            MessageBox.Show(msg);
         }
     }
 }
