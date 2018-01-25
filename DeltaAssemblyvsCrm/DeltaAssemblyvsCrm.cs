@@ -347,7 +347,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         private void DeltaAssemblyvsCrm_Load(object sender, EventArgs e)
         {
             log = new LogUsage(this);
-            this.log.LogData(EventType.Event, LogAction.SettingLoaded);
+            this.log.LogData(EventType.Event, LogAction.PluginOpened);
             LoadSetting();
         }
        
@@ -367,7 +367,9 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             {
                 this.log.LogData(EventType.Exception, LogAction.SettingLoaded, ex);
             }
-            
+
+            this.log.LogData(EventType.Event, LogAction.SettingLoaded);
+
             if (!settings.AllowLogUsage.HasValue)
             {
                 this.log.PromptToLog();

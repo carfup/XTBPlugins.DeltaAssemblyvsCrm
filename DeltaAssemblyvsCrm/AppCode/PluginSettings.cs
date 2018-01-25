@@ -33,6 +33,7 @@ namespace Carfup.XTBPlugins.AppCode
         public const string CRMAssembliesLoaded = "CRMAssembliesLoaded";
         public const string AssemblyLoaded = "AssemblyLoaded";
         public const string PluginsLoaded = "PluginsLoaded";
+        public const string PluginOpened = "PluginOpened";
         public const string PluginsCompared = "PluginsCompared";
     }
 }

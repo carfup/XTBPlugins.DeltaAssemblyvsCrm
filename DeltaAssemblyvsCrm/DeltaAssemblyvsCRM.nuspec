@@ -12,7 +12,7 @@
     <summary>Really sweet plugin that does awesome things</summary>
     <releaseNotes>
 1.2018.1.17
-Allow the plugin to log anonymous data or not, in order to improve the most used features and develop the others.
+Allow the plugin to log anonymous data, in order to improve the most used features and develop the others.
 
 1.2018.1.14
 Integration of the workflows in the assembly comparaison.
