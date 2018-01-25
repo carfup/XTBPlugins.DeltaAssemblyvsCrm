@@ -370,7 +370,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             
             if (!settings.AllowLogUsage.HasValue)
             {
-                LogUsage.PromptToLog();;
+                this.log.PromptToLog();
                 this.SaveSettings();
             }
         }

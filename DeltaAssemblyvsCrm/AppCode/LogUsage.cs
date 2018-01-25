@@ -72,12 +72,13 @@ namespace Carfup.XTBPlugins.AppCode
             return dictionary;
         }
 
-        internal static void PromptToLog()
+        internal void PromptToLog()
         {
-            var msg = "Anonymous statistics will be collected to improve plugin functionalities \n\n" +
-                      "You can change this setting in plugin options anytime.\n\n" +
+            var msg = "Anonymous statistics will be collected to improve plugin functionalities.\n\n" +
+                      "You can change this setting in plugin's options anytime.\n\n" +
                       "Thanks!";
 
+            this.deltaVsCRM.settings.AllowLogUsage = true;
             MessageBox.Show(msg);
         }
     }
