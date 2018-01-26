@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Carfup.XTBPlugins.AppCode;
 
@@ -35,7 +28,7 @@ namespace Carfup.XTBPlugins.Forms
         {
             var settings = this.deltaVsCRM.settings;
             settings.AllowLogUsage = checkboxAllowStats.Checked;
-            settings.CurrentVersion = this.deltaVsCRM.CurrentVersion;
+            settings.CurrentVersion = DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion;
 
             return settings;
         }

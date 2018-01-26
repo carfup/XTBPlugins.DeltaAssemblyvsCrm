@@ -45,7 +45,7 @@
             this.bgStats.Controls.Add(this.checkboxAllowStats);
             this.bgStats.Location = new System.Drawing.Point(12, 12);
             this.bgStats.Name = "bgStats";
-            this.bgStats.Size = new System.Drawing.Size(438, 88);
+            this.bgStats.Size = new System.Drawing.Size(402, 117);
             this.bgStats.TabIndex = 6;
             this.bgStats.TabStop = false;
             this.bgStats.Text = "Statistics";
@@ -56,18 +56,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Location = new System.Drawing.Point(7, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(425, 45);
+            this.label1.Size = new System.Drawing.Size(389, 71);
             this.label1.TabIndex = 6;
-            this.label1.Text = "This plugin collects ONLY anonymous usage statistics. No information related your" +
-    " CRM / Organization will be retrieve. This will help us to improve the most used" +
-    " features !";
+            this.label1.Text = "This plugin collects ONLY anonymous usage statistics. \r\nNo information related yo" +
+    "ur CRM / Organization will be retrieve. \r\n\r\nThis will help us to improve the mos" +
+    "t used features !\r\n";
             // 
             // checkboxAllowStats
             // 
             this.checkboxAllowStats.AutoSize = true;
             this.checkboxAllowStats.Checked = true;
             this.checkboxAllowStats.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkboxAllowStats.Location = new System.Drawing.Point(10, 68);
+            this.checkboxAllowStats.Location = new System.Drawing.Point(10, 94);
             this.checkboxAllowStats.Name = "checkboxAllowStats";
             this.checkboxAllowStats.Size = new System.Drawing.Size(94, 17);
             this.checkboxAllowStats.TabIndex = 5;
@@ -76,7 +76,8 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(375, 106);
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(340, 135);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 9;
@@ -86,7 +87,8 @@
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(294, 106);
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOk.Location = new System.Drawing.Point(259, 135);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 23);
             this.buttonOk.TabIndex = 8;
@@ -98,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 133);
+            this.ClientSize = new System.Drawing.Size(426, 171);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.bgStats);

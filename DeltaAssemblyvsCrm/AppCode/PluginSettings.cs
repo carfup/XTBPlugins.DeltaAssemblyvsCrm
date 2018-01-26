@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Carfup.XTBPlugins.AppCode
 {
     public class PluginSettings
     {
         public bool? AllowLogUsage { get; set; }
-        public string CurrentVersion { get; set; }
+        public string CurrentVersion { get; set; } = DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion;
     }
 
     // EventType to qualify which type of telemetry we send
@@ -38,6 +33,7 @@ namespace Carfup.XTBPlugins.AppCode
         public const string CRMAssembliesLoaded = "CRMAssembliesLoaded";
         public const string AssemblyLoaded = "AssemblyLoaded";
         public const string PluginsLoaded = "PluginsLoaded";
+        public const string PluginOpened = "PluginOpened";
         public const string PluginsCompared = "PluginsCompared";
     }
 }
