@@ -29,12 +29,15 @@
 		private void InitializeComponent()
 		{
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBoxPluginTypes = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBoxPluginTypesAssembly = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -54,10 +57,10 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
-            this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
+            this.listViewPluginTypes = new System.Windows.Forms.ListView();
+            this.columnHeaderPluginName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderModifiedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCreatedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -85,6 +88,44 @@
             this.toolStrip1.Size = new System.Drawing.Size(1134, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonCloseTool
+            // 
+            this.toolStripButtonCloseTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCloseTool.Image = global::Carfup.XTBPlugins.Properties.Resources.close;
+            this.toolStripButtonCloseTool.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCloseTool.Name = "toolStripButtonCloseTool";
+            this.toolStripButtonCloseTool.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonCloseTool.Text = "toolStripButton1";
+            this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
+            // 
+            // toolStripButtonLoadPluginSteps
+            // 
+            this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
+            this.toolStripButtonLoadPluginSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoadPluginSteps.Name = "toolStripButtonLoadPluginSteps";
+            this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
+            this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
+            this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
+            // 
+            // toolStripButtonCompare
+            // 
+            this.toolStripButtonCompare.Image = global::Carfup.XTBPlugins.Properties.Resources.compare;
+            this.toolStripButtonCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCompare.Name = "toolStripButtonCompare";
+            this.toolStripButtonCompare.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButtonCompare.Text = "Compare";
+            this.toolStripButtonCompare.Visible = false;
+            this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
+            // 
+            // toolStripButtonOptions
+            // 
+            this.toolStripButtonOptions.Image = global::Carfup.XTBPlugins.Properties.Resources.gear;
+            this.toolStripButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonOptions.Name = "toolStripButtonOptions";
+            this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
+            this.toolStripButtonOptions.Text = "Options";
+            this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -140,24 +181,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.listBoxPluginTypes);
+            this.groupBox1.Controls.Add(this.listViewPluginTypes);
             this.groupBox1.Location = new System.Drawing.Point(3, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(548, 486);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CRM Plugins list";
-            // 
-            // listBoxPluginTypes
-            // 
-            this.listBoxPluginTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxPluginTypes.FormattingEnabled = true;
-            this.listBoxPluginTypes.Location = new System.Drawing.Point(9, 17);
-            this.listBoxPluginTypes.Name = "listBoxPluginTypes";
-            this.listBoxPluginTypes.Size = new System.Drawing.Size(533, 459);
-            this.listBoxPluginTypes.TabIndex = 6;
             // 
             // groupBox2
             // 
@@ -181,7 +211,7 @@
             this.listBoxPluginTypesAssembly.FormattingEnabled = true;
             this.listBoxPluginTypesAssembly.Location = new System.Drawing.Point(6, 17);
             this.listBoxPluginTypesAssembly.Name = "listBoxPluginTypesAssembly";
-            this.listBoxPluginTypesAssembly.Size = new System.Drawing.Size(536, 459);
+            this.listBoxPluginTypesAssembly.Size = new System.Drawing.Size(536, 446);
             this.listBoxPluginTypesAssembly.TabIndex = 9;
             // 
             // groupBox5
@@ -395,43 +425,36 @@
             this.checkBoxComparePlugins.UseVisualStyleBackColor = true;
             this.checkBoxComparePlugins.CheckedChanged += new System.EventHandler(this.checkBoxComparePlugins_CheckedChanged);
             // 
-            // toolStripButtonCloseTool
+            // listViewPluginTypes
             // 
-            this.toolStripButtonCloseTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCloseTool.Image = global::Carfup.XTBPlugins.Properties.Resources.close;
-            this.toolStripButtonCloseTool.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCloseTool.Name = "toolStripButtonCloseTool";
-            this.toolStripButtonCloseTool.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonCloseTool.Text = "toolStripButton1";
-            this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
+            this.listViewPluginTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewPluginTypes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderPluginName,
+            this.columnHeaderCreatedOn,
+            this.columnHeaderModifiedOn});
+            this.listViewPluginTypes.Location = new System.Drawing.Point(7, 17);
+            this.listViewPluginTypes.Name = "listViewPluginTypes";
+            this.listViewPluginTypes.Size = new System.Drawing.Size(535, 455);
+            this.listViewPluginTypes.TabIndex = 7;
+            this.listViewPluginTypes.UseCompatibleStateImageBehavior = false;
+            this.listViewPluginTypes.View = System.Windows.Forms.View.Details;
             // 
-            // toolStripButtonLoadPluginSteps
+            // columnHeaderPluginName
             // 
-            this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
-            this.toolStripButtonLoadPluginSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonLoadPluginSteps.Name = "toolStripButtonLoadPluginSteps";
-            this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
-            this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
-            this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
+            this.columnHeaderPluginName.Text = "Plugin Name";
+            this.columnHeaderPluginName.Width = 200;
             // 
-            // toolStripButtonCompare
+            // columnHeaderModifiedOn
             // 
-            this.toolStripButtonCompare.Image = global::Carfup.XTBPlugins.Properties.Resources.compare;
-            this.toolStripButtonCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCompare.Name = "toolStripButtonCompare";
-            this.toolStripButtonCompare.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButtonCompare.Text = "Compare";
-            this.toolStripButtonCompare.Visible = false;
-            this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
+            this.columnHeaderModifiedOn.DisplayIndex = 1;
+            this.columnHeaderModifiedOn.Text = "ModifiedOn";
             // 
-            // toolStripButtonOptions
+            // columnHeaderCreatedOn
             // 
-            this.toolStripButtonOptions.Image = global::Carfup.XTBPlugins.Properties.Resources.gear;
-            this.toolStripButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonOptions.Name = "toolStripButtonOptions";
-            this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
-            this.toolStripButtonOptions.Text = "Options";
-            this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
+            this.columnHeaderCreatedOn.DisplayIndex = 2;
+            this.columnHeaderCreatedOn.Text = "CreatedOn";
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -482,7 +505,6 @@
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.ListBox listBoxPluginTypesAssembly;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.ListBox listBoxPluginTypes;
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.ListBox listBoxInAssemblyButCRM;
 		private System.Windows.Forms.GroupBox groupBox3;
@@ -501,5 +523,9 @@
         private System.Windows.Forms.CheckBox checkBoxCompareWorkflows;
         private System.Windows.Forms.CheckBox checkBoxComparePlugins;
         private System.Windows.Forms.ToolStripButton toolStripButtonOptions;
+        private System.Windows.Forms.ListView listViewPluginTypes;
+        private System.Windows.Forms.ColumnHeader columnHeaderPluginName;
+        private System.Windows.Forms.ColumnHeader columnHeaderCreatedOn;
+        private System.Windows.Forms.ColumnHeader columnHeaderModifiedOn;
     }
 }

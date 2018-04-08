@@ -156,7 +156,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					    if(listOfPluginsTypeInAssembly != null)
 						    listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray());
 
-                        if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
+                        if (listViewPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
                             toolStripButtonCompare.Visible = true;
 
                         this.log.LogData(EventType.Event, LogAction.AssemblyLoaded);
@@ -182,8 +182,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
 		private void comboBoxAssemblyList_Changed(object sender, EventArgs evt)
 		{
-			// we clear the content of the list first
-			listBoxPluginTypes.Items.Clear();
+            // we clear the content of the list first
+            listViewPluginTypes.Items.Clear();
 
 			var assemblyname = comboBoxAssemblyList.SelectedItem.ToString();
 			
@@ -195,7 +195,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     
                     listOfPluginsTypesInCRM = Service.RetrieveMultiple(new QueryExpression("plugintype")
                     {
-                        ColumnSet = new ColumnSet("name", "isworkflowactivity", "typename"),
+                        ColumnSet = new ColumnSet("name", "isworkflowactivity", "typename", "createdon", "modifiedon"),
 
                         Criteria = new FilterExpression
                         {
@@ -217,9 +217,22 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					}
 
                     if (listOfPluginsTypesInCRM != null)
-						listBoxPluginTypes.Items.AddRange(listOfPluginsTypesInCRM.Select(p => p.GetAttributeValue<string>("typename")).ToArray());
+                    {
+                        foreach(var plugin in listOfPluginsTypesInCRM)
+                        { 
+                            var item = new ListViewItem(plugin["name"].ToString());
+                            item.SubItems.Add(plugin["createdon"].ToString());
+                            item.SubItems.Add(plugin["modifiedon"].ToString());
+                            item.Tag = plugin.Id;
 
-					if (listBoxPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
+                            listViewPluginTypes.Items.Add((ListViewItem)item.Clone());
+                        }
+
+                      //  listBoxPluginTypes.Items.AddRange(listOfPluginsTypesInCRM.Select(p => p.GetAttributeValue<string>("typename")).ToArray());
+                    }
+						
+
+					if (listViewPluginTypes.Items.Count > 0 && listBoxPluginTypesAssembly.Items.Count > 0)
                         toolStripButtonCompare.Visible = true;
 
                     this.log.LogData(EventType.Event, LogAction.PluginsLoaded);
