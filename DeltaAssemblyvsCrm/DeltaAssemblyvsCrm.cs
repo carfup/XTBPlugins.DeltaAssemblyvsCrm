@@ -19,8 +19,6 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 		#region varibables
 		public string assemblyName = "";
 		private string[] listOfCRMAssemblies = null;
-		private string[] listOfPluginsInCRM = null;
-		private string[] listOfPluginsInAssembly = null;
         private List<Entity> listOfPluginsTypesInCRM = null;
         private List<Type> listOfPluginsTypeInAssembly = null;
         private string[] inCRMButAssembly = null;
@@ -28,21 +26,9 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         internal PluginSettings settings = new PluginSettings();
         LogUsage log = null;
 
-        public string RepositoryName
-		{
-			get
-			{
-				return "XTBPlugins.DeltaAssemblyvsCrm";
-			}
-		}
+        public string RepositoryName { get { return "XTBPlugins.DeltaAssemblyvsCrm"; } }
 
-		public string UserName
-		{
-			get
-			{
-				return "carfup";
-			}
-		}
+		public string UserName { get { return "carfup"; } }
 
 		#endregion
 
@@ -325,9 +311,9 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                         else
                         {
                             listBoxInCRMButAssembly.Visible = true;
-                            listBoxInCRMButAssembly.Items.AddRange(inCRMButAssembly);
                             labelCrmButAssemblyMatch.Visible = false;
-
+                            // Pushing values to the box
+                            Invoke(new Action(() => { listBoxInCRMButAssembly.Items.AddRange(inCRMButAssembly); }));
                         }
 
                         if (inAssemblyButCRM.Count() == 0)
@@ -336,10 +322,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             labelAssemblyButCRMMatch.Visible = true;
                         }
                         else
-                        {
-                            listBoxInAssemblyButCRM.Items.AddRange(inAssemblyButCRM);
+                        {                            
                             listBoxInAssemblyButCRM.Visible = true;
                             labelAssemblyButCRMMatch.Visible = false;
+                            // Pushing values to the box
+                            Invoke(new Action(() => { listBoxInAssemblyButCRM.Items.AddRange(inAssemblyButCRM); }));
                         }
 
                         tabControl1.SelectedTab = tabPageResult;

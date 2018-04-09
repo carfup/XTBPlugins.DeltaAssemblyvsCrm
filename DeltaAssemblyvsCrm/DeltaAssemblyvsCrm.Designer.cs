@@ -38,6 +38,10 @@
             this.tabPageLoad = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listViewPluginTypes = new System.Windows.Forms.ListView();
+            this.columnHeaderPluginName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCreatedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderModifiedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBoxPluginTypesAssembly = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -57,10 +61,6 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
-            this.listViewPluginTypes = new System.Windows.Forms.ListView();
-            this.columnHeaderPluginName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderModifiedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderCreatedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -188,6 +188,37 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CRM Plugins list";
+            // 
+            // listViewPluginTypes
+            // 
+            this.listViewPluginTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewPluginTypes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderPluginName,
+            this.columnHeaderCreatedOn,
+            this.columnHeaderModifiedOn});
+            this.listViewPluginTypes.Location = new System.Drawing.Point(7, 17);
+            this.listViewPluginTypes.Name = "listViewPluginTypes";
+            this.listViewPluginTypes.Size = new System.Drawing.Size(535, 455);
+            this.listViewPluginTypes.TabIndex = 7;
+            this.listViewPluginTypes.UseCompatibleStateImageBehavior = false;
+            this.listViewPluginTypes.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderPluginName
+            // 
+            this.columnHeaderPluginName.Text = "Plugin Name";
+            this.columnHeaderPluginName.Width = 200;
+            // 
+            // columnHeaderCreatedOn
+            // 
+            this.columnHeaderCreatedOn.DisplayIndex = 2;
+            this.columnHeaderCreatedOn.Text = "CreatedOn";
+            // 
+            // columnHeaderModifiedOn
+            // 
+            this.columnHeaderModifiedOn.DisplayIndex = 1;
+            this.columnHeaderModifiedOn.Text = "ModifiedOn";
             // 
             // groupBox2
             // 
@@ -424,37 +455,6 @@
             this.checkBoxComparePlugins.Text = "Plugins";
             this.checkBoxComparePlugins.UseVisualStyleBackColor = true;
             this.checkBoxComparePlugins.CheckedChanged += new System.EventHandler(this.checkBoxComparePlugins_CheckedChanged);
-            // 
-            // listViewPluginTypes
-            // 
-            this.listViewPluginTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewPluginTypes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderPluginName,
-            this.columnHeaderCreatedOn,
-            this.columnHeaderModifiedOn});
-            this.listViewPluginTypes.Location = new System.Drawing.Point(7, 17);
-            this.listViewPluginTypes.Name = "listViewPluginTypes";
-            this.listViewPluginTypes.Size = new System.Drawing.Size(535, 455);
-            this.listViewPluginTypes.TabIndex = 7;
-            this.listViewPluginTypes.UseCompatibleStateImageBehavior = false;
-            this.listViewPluginTypes.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeaderPluginName
-            // 
-            this.columnHeaderPluginName.Text = "Plugin Name";
-            this.columnHeaderPluginName.Width = 200;
-            // 
-            // columnHeaderModifiedOn
-            // 
-            this.columnHeaderModifiedOn.DisplayIndex = 1;
-            this.columnHeaderModifiedOn.Text = "ModifiedOn";
-            // 
-            // columnHeaderCreatedOn
-            // 
-            this.columnHeaderCreatedOn.DisplayIndex = 2;
-            this.columnHeaderCreatedOn.Text = "CreatedOn";
             // 
             // DeltaAssemblyvsCrm
             // 
