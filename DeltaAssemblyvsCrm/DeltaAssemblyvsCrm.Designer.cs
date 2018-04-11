@@ -28,11 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeltaAssemblyvsCrm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
@@ -54,16 +56,17 @@
             this.tabPageResult = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelCrmButAssemblyMatch = new System.Windows.Forms.Label();
+            this.listViewInCRMButAssembly = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.labelAssemblyButCRMMatch = new System.Windows.Forms.Label();
+            this.listViewInAssemblyButCRM = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
-            this.listViewInCRMButAssembly = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.labelCrmButAssemblyMatch = new System.Windows.Forms.Label();
-            this.listViewInAssemblyButCRM = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.labelAssemblyButCRMMatch = new System.Windows.Forms.Label();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -85,7 +88,8 @@
             this.toolStripButtonCloseTool,
             this.toolStripButtonLoadPluginSteps,
             this.toolStripButtonCompare,
-            this.toolStripButtonOptions});
+            this.toolStripButtonOptions,
+            this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1134, 25);
@@ -129,6 +133,15 @@
             this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
             this.toolStripButtonOptions.Text = "Options";
             this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(114, 22);
+            this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -364,6 +377,35 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Plugins which are in your CRM but not in your assembly";
             // 
+            // labelCrmButAssemblyMatch
+            // 
+            this.labelCrmButAssemblyMatch.AutoSize = true;
+            this.labelCrmButAssemblyMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCrmButAssemblyMatch.ForeColor = System.Drawing.Color.Green;
+            this.labelCrmButAssemblyMatch.Location = new System.Drawing.Point(109, 97);
+            this.labelCrmButAssemblyMatch.Name = "labelCrmButAssemblyMatch";
+            this.labelCrmButAssemblyMatch.Size = new System.Drawing.Size(302, 31);
+            this.labelCrmButAssemblyMatch.TabIndex = 17;
+            this.labelCrmButAssemblyMatch.Text = "This is a perfect match !";
+            this.labelCrmButAssemblyMatch.Visible = false;
+            // 
+            // listViewInCRMButAssembly
+            // 
+            this.listViewInCRMButAssembly.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2});
+            this.listViewInCRMButAssembly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewInCRMButAssembly.Location = new System.Drawing.Point(3, 16);
+            this.listViewInCRMButAssembly.Name = "listViewInCRMButAssembly";
+            this.listViewInCRMButAssembly.Size = new System.Drawing.Size(536, 481);
+            this.listViewInCRMButAssembly.TabIndex = 16;
+            this.listViewInCRMButAssembly.UseCompatibleStateImageBehavior = false;
+            this.listViewInCRMButAssembly.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Plugin Name";
+            this.columnHeader2.Width = 181;
+            // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -377,6 +419,35 @@
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Plugins which are in your assembly but not in your CRM";
+            // 
+            // labelAssemblyButCRMMatch
+            // 
+            this.labelAssemblyButCRMMatch.AutoSize = true;
+            this.labelAssemblyButCRMMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAssemblyButCRMMatch.ForeColor = System.Drawing.Color.Green;
+            this.labelAssemblyButCRMMatch.Location = new System.Drawing.Point(120, 97);
+            this.labelAssemblyButCRMMatch.Name = "labelAssemblyButCRMMatch";
+            this.labelAssemblyButCRMMatch.Size = new System.Drawing.Size(302, 31);
+            this.labelAssemblyButCRMMatch.TabIndex = 19;
+            this.labelAssemblyButCRMMatch.Text = "This is a perfect match !";
+            this.labelAssemblyButCRMMatch.Visible = false;
+            // 
+            // listViewInAssemblyButCRM
+            // 
+            this.listViewInAssemblyButCRM.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3});
+            this.listViewInAssemblyButCRM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewInAssemblyButCRM.Location = new System.Drawing.Point(3, 16);
+            this.listViewInAssemblyButCRM.Name = "listViewInAssemblyButCRM";
+            this.listViewInAssemblyButCRM.Size = new System.Drawing.Size(536, 481);
+            this.listViewInAssemblyButCRM.TabIndex = 18;
+            this.listViewInAssemblyButCRM.UseCompatibleStateImageBehavior = false;
+            this.listViewInAssemblyButCRM.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Plugin Name";
+            this.columnHeader3.Width = 181;
             // 
             // groupBox7
             // 
@@ -417,63 +488,10 @@
             this.checkBoxComparePlugins.UseVisualStyleBackColor = true;
             this.checkBoxComparePlugins.CheckedChanged += new System.EventHandler(this.checkBoxComparePlugins_CheckedChanged);
             // 
-            // listViewInCRMButAssembly
+            // toolStripButton1
             // 
-            this.listViewInCRMButAssembly.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2});
-            this.listViewInCRMButAssembly.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewInCRMButAssembly.Location = new System.Drawing.Point(3, 16);
-            this.listViewInCRMButAssembly.Name = "listViewInCRMButAssembly";
-            this.listViewInCRMButAssembly.Size = new System.Drawing.Size(536, 481);
-            this.listViewInCRMButAssembly.TabIndex = 16;
-            this.listViewInCRMButAssembly.UseCompatibleStateImageBehavior = false;
-            this.listViewInCRMButAssembly.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Plugin Name";
-            this.columnHeader2.Width = 181;
-            // 
-            // labelCrmButAssemblyMatch
-            // 
-            this.labelCrmButAssemblyMatch.AutoSize = true;
-            this.labelCrmButAssemblyMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCrmButAssemblyMatch.ForeColor = System.Drawing.Color.Green;
-            this.labelCrmButAssemblyMatch.Location = new System.Drawing.Point(109, 97);
-            this.labelCrmButAssemblyMatch.Name = "labelCrmButAssemblyMatch";
-            this.labelCrmButAssemblyMatch.Size = new System.Drawing.Size(302, 31);
-            this.labelCrmButAssemblyMatch.TabIndex = 17;
-            this.labelCrmButAssemblyMatch.Text = "This is a perfect match !";
-            this.labelCrmButAssemblyMatch.Visible = false;
-            // 
-            // listViewInAssemblyButCRM
-            // 
-            this.listViewInAssemblyButCRM.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3});
-            this.listViewInAssemblyButCRM.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewInAssemblyButCRM.Location = new System.Drawing.Point(3, 16);
-            this.listViewInAssemblyButCRM.Name = "listViewInAssemblyButCRM";
-            this.listViewInAssemblyButCRM.Size = new System.Drawing.Size(536, 481);
-            this.listViewInAssemblyButCRM.TabIndex = 18;
-            this.listViewInAssemblyButCRM.UseCompatibleStateImageBehavior = false;
-            this.listViewInAssemblyButCRM.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Plugin Name";
-            this.columnHeader3.Width = 181;
-            // 
-            // labelAssemblyButCRMMatch
-            // 
-            this.labelAssemblyButCRMMatch.AutoSize = true;
-            this.labelAssemblyButCRMMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAssemblyButCRMMatch.ForeColor = System.Drawing.Color.Green;
-            this.labelAssemblyButCRMMatch.Location = new System.Drawing.Point(120, 97);
-            this.labelAssemblyButCRMMatch.Name = "labelAssemblyButCRMMatch";
-            this.labelAssemblyButCRMMatch.Size = new System.Drawing.Size(302, 31);
-            this.labelAssemblyButCRMMatch.TabIndex = 19;
-            this.labelAssemblyButCRMMatch.Text = "This is a perfect match !";
-            this.labelAssemblyButCRMMatch.Visible = false;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -549,5 +567,7 @@
         private System.Windows.Forms.Label labelAssemblyButCRMMatch;
         private System.Windows.Forms.ListView listViewInAssemblyButCRM;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

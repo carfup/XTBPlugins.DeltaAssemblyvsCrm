@@ -14,8 +14,8 @@ using Carfup.XTBPlugins.Forms;
 
 namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 {
-	public partial class DeltaAssemblyvsCrm : PluginControlBase, IGitHubPlugin
-	{
+	public partial class DeltaAssemblyvsCrm : PluginControlBase, IGitHubPlugin, IMessageBusHost
+    {
 		#region varibables
 		public string assemblyName = "";
 		private string[] listOfCRMAssemblies = null;
@@ -455,6 +455,30 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     }
                 }
             }
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            var solutionName = comboBoxAssemblyList.SelectedItem.ToString();
+
+            if(solutionName == null || solutionName == "")
+            {
+                MessageBox.Show(this, "Please select a solution first to open the Steps details plugin.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var messageBusEventArgs = new MessageBusEventArgs("Delta Plugin Steps between two environments")
+            {
+                SourcePlugin = "Delta Plugins : Local Assembly vs CRM",
+                TargetArgument = solutionName
+            };
+            OnOutgoingMessage(this, messageBusEventArgs);
+        }
+
+        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
+
+        public void OnIncomingMessage(MessageBusEventArgs message)
+        {
+          
         }
     }
 }
