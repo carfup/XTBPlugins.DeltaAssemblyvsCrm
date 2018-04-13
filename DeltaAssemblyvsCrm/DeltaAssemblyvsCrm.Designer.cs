@@ -34,7 +34,7 @@
             this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonViewSolutionsSteps = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
@@ -88,8 +88,8 @@
             this.toolStripButtonCloseTool,
             this.toolStripButtonLoadPluginSteps,
             this.toolStripButtonCompare,
-            this.toolStripButtonOptions,
-            this.toolStripButton2});
+            this.toolStripButtonViewSolutionsSteps,
+            this.toolStripButtonOptions});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1134, 25);
@@ -134,14 +134,14 @@
             this.toolStripButtonOptions.Text = "Options";
             this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
             // 
-            // toolStripButton2
+            // toolStripButtonViewSolutionsSteps
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(114, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.toolStripButtonViewSolutionsSteps.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonViewSolutionsSteps.Image")));
+            this.toolStripButtonViewSolutionsSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonViewSolutionsSteps.Name = "toolStripButtonViewSolutionsSteps";
+            this.toolStripButtonViewSolutionsSteps.Size = new System.Drawing.Size(136, 22);
+            this.toolStripButtonViewSolutionsSteps.Text = "View solution\'s steps";
+            this.toolStripButtonViewSolutionsSteps.Click += new System.EventHandler(this.toolStripButtonViewSolutionsSteps_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -567,7 +567,7 @@
         private System.Windows.Forms.Label labelAssemblyButCRMMatch;
         private System.Windows.Forms.ListView listViewInAssemblyButCRM;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonViewSolutionsSteps;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

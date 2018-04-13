@@ -239,8 +239,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                         foreach(var plugin in listOfPluginsTypesInCRM)
                         { 
                             var item = new ListViewItem(plugin["name"].ToString());
-                            item.SubItems.Add(plugin["createdon"].ToString());
-                            item.SubItems.Add(plugin["modifiedon"].ToString());
+                            item.SubItems.Add(plugin.GetAttributeValue<DateTime>("createdon").ToLocalTime().ToString("dd-MMM-yyyy HH:mm"));
+                            item.SubItems.Add(plugin.GetAttributeValue<DateTime>("modifiedon").ToLocalTime().ToString("dd-MMM-yyyy HH:mm"));
                             item.Tag = plugin.Id;
 
                             listViewPluginTypes.Items.Add((ListViewItem)item.Clone());
@@ -457,11 +457,18 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             }
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
+
+        public void OnIncomingMessage(MessageBusEventArgs message)
+        {
+          
+        }
+
+        private void toolStripButtonViewSolutionsSteps_Click(object sender, EventArgs e)
         {
             var solutionName = comboBoxAssemblyList.SelectedItem.ToString();
 
-            if(solutionName == null || solutionName == "")
+            if (solutionName == null || solutionName == "")
             {
                 MessageBox.Show(this, "Please select a solution first to open the Steps details plugin.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -472,13 +479,6 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 TargetArgument = solutionName
             };
             OnOutgoingMessage(this, messageBusEventArgs);
-        }
-
-        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
-
-        public void OnIncomingMessage(MessageBusEventArgs message)
-        {
-          
         }
     }
 }
