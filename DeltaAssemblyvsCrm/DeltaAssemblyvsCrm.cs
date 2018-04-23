@@ -282,7 +282,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
         private void checkBoxComparePlugins_CheckedChanged(object sender, EventArgs e)
         {
-            ExecuteMethod(manageListToDisplay);
+            ExecuteMethod( manageListToDisplay);
         }
 
         private void checkBoxCompareWorkflows_CheckedChanged(object sender, EventArgs e)
@@ -307,8 +307,12 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     // We have at least one workflow
                     if (listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").Count() == 0)
                     {
+                        // removing the event to not fire the event
+                        checkBoxCompareWorkflows.CheckedChanged -= checkBoxCompareWorkflows_CheckedChanged;
                         checkBoxCompareWorkflows.Checked = false;
                         checkBoxCompareWorkflows.Enabled = false;
+                        // adding the event back
+                        checkBoxCompareWorkflows.CheckedChanged += checkBoxCompareWorkflows_CheckedChanged;
                     }
 
                     // managing what to compare

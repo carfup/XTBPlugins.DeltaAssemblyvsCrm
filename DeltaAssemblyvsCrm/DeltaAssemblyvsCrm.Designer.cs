@@ -33,8 +33,8 @@
             this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonViewSolutionsSteps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
@@ -125,6 +125,16 @@
             this.toolStripButtonCompare.Visible = false;
             this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
             // 
+            // toolStripButtonViewSolutionsSteps
+            // 
+            this.toolStripButtonViewSolutionsSteps.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonViewSolutionsSteps.Image")));
+            this.toolStripButtonViewSolutionsSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonViewSolutionsSteps.Name = "toolStripButtonViewSolutionsSteps";
+            this.toolStripButtonViewSolutionsSteps.Size = new System.Drawing.Size(136, 22);
+            this.toolStripButtonViewSolutionsSteps.Text = "View solution\'s steps";
+            this.toolStripButtonViewSolutionsSteps.Visible = false;
+            this.toolStripButtonViewSolutionsSteps.Click += new System.EventHandler(this.toolStripButtonViewSolutionsSteps_Click);
+            // 
             // toolStripButtonOptions
             // 
             this.toolStripButtonOptions.Image = global::Carfup.XTBPlugins.Properties.Resources.gear;
@@ -133,15 +143,6 @@
             this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
             this.toolStripButtonOptions.Text = "Options";
             this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
-            // 
-            // toolStripButtonViewSolutionsSteps
-            // 
-            this.toolStripButtonViewSolutionsSteps.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonViewSolutionsSteps.Image")));
-            this.toolStripButtonViewSolutionsSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonViewSolutionsSteps.Name = "toolStripButtonViewSolutionsSteps";
-            this.toolStripButtonViewSolutionsSteps.Size = new System.Drawing.Size(136, 22);
-            this.toolStripButtonViewSolutionsSteps.Text = "View solution\'s steps";
-            this.toolStripButtonViewSolutionsSteps.Click += new System.EventHandler(this.toolStripButtonViewSolutionsSteps_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -207,6 +208,7 @@
             // 
             // listViewPluginTypes
             // 
+            this.listViewPluginTypes.AllowColumnReorder = true;
             this.listViewPluginTypes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderPluginName,
             this.columnHeaderCreatedOn,
@@ -252,6 +254,7 @@
             // 
             // listViewPluginTypesAssembly
             // 
+            this.listViewPluginTypesAssembly.AllowColumnReorder = true;
             this.listViewPluginTypesAssembly.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listViewPluginTypesAssembly.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -295,8 +298,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxAssemblyList.FormattingEnabled = true;
             this.comboBoxAssemblyList.Location = new System.Drawing.Point(153, 19);
+            this.comboBoxAssemblyList.MinimumSize = new System.Drawing.Size(40, 0);
             this.comboBoxAssemblyList.Name = "comboBoxAssemblyList";
-            this.comboBoxAssemblyList.Size = new System.Drawing.Size(329, 21);
+            this.comboBoxAssemblyList.Size = new System.Drawing.Size(376, 21);
             this.comboBoxAssemblyList.TabIndex = 11;
             this.comboBoxAssemblyList.SelectedIndexChanged += new System.EventHandler(this.comboBoxAssemblyList_Changed);
             // 
@@ -391,6 +395,7 @@
             // 
             // listViewInCRMButAssembly
             // 
+            this.listViewInCRMButAssembly.AllowColumnReorder = true;
             this.listViewInCRMButAssembly.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2});
             this.listViewInCRMButAssembly.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -434,6 +439,7 @@
             // 
             // listViewInAssemblyButCRM
             // 
+            this.listViewInAssemblyButCRM.AllowColumnReorder = true;
             this.listViewInAssemblyButCRM.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3});
             this.listViewInAssemblyButCRM.Dock = System.Windows.Forms.DockStyle.Fill;
