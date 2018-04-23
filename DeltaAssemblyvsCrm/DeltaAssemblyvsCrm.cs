@@ -465,7 +465,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
         public void OnIncomingMessage(MessageBusEventArgs message)
         {
-          
+            if(message.TargetArgument != null)
+            {
+                comboBoxAssemblyList.SelectedIndex = comboBoxAssemblyList.FindStringExact(message.TargetArgument);
+            }
+            this.log.LogData(EventType.Event, LogAction.LoadedFromOtherPlugin);
         }
 
         private void toolStripButtonViewSolutionsSteps_Click(object sender, EventArgs e)
