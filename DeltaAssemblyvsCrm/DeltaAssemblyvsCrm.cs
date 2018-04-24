@@ -348,16 +348,15 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     {
                         if (inCRMButAssembly.Count() == 0)
                         {
-                            //listViewInCRMButAssembly.Visible = false;
                             labelCrmButAssemblyMatch.Visible = true;
                         }
                         else
                         {
-                            //listViewInCRMButAssembly.Visible = true;
-                            labelCrmButAssemblyMatch.Visible = false;
-                            // Pushing values to the box
                             Invoke(new Action(() => {
-                                foreach(var item in inCRMButAssembly)
+                                labelCrmButAssemblyMatch.Visible = false;
+
+                                // Pushing values to the box
+                                foreach (var item in inCRMButAssembly)
                                     listViewInCRMButAssembly.Items.Add(new ListViewItem(item));
 
                                 listViewInCRMButAssembly.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
