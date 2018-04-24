@@ -187,6 +187,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             else
             {
                 labelLoadAssembly.Text = "";
+                toolStripButtonCompare.Visible = false;
             }
         }
 
@@ -213,7 +214,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     
                     listOfPluginsTypesInCRM = Service.RetrieveMultiple(new QueryExpression("plugintype")
                     {
-                        ColumnSet = new ColumnSet("name", "isworkflowactivity", "typename", "createdon", "modifiedon"),
+                        ColumnSet = new ColumnSet("name", "isworkflowactivity", "typename", "createdon", "modifiedon", "version"),
 
                         Criteria = new FilterExpression
                         {
@@ -241,6 +242,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             var item = new ListViewItem(plugin["name"].ToString());
                             item.SubItems.Add(plugin.GetAttributeValue<DateTime>("createdon").ToLocalTime().ToString("dd-MMM-yyyy HH:mm"));
                             item.SubItems.Add(plugin.GetAttributeValue<DateTime>("modifiedon").ToLocalTime().ToString("dd-MMM-yyyy HH:mm"));
+                            item.SubItems.Add(plugin.GetAttributeValue<string>("version"));
                             item.Tag = plugin.Id;
 
                             listViewPluginTypes.Items.Add((ListViewItem)item.Clone());
@@ -307,12 +309,14 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     // We have at least one workflow
                     if (listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").Count() == 0)
                     {
-                        // removing the event to not fire the event
-                        checkBoxCompareWorkflows.CheckedChanged -= checkBoxCompareWorkflows_CheckedChanged;
-                        checkBoxCompareWorkflows.Checked = false;
-                        checkBoxCompareWorkflows.Enabled = false;
-                        // adding the event back
-                        checkBoxCompareWorkflows.CheckedChanged += checkBoxCompareWorkflows_CheckedChanged;
+                        this.Invoke(new Action(() => {
+                            // removing the event to not fire the event
+                            checkBoxCompareWorkflows.CheckedChanged -= checkBoxCompareWorkflows_CheckedChanged;
+                            checkBoxCompareWorkflows.Checked = false;
+                            checkBoxCompareWorkflows.Enabled = false;
+                            // adding the event back
+                            checkBoxCompareWorkflows.CheckedChanged += checkBoxCompareWorkflows_CheckedChanged;
+                        }));  
                     }
 
                     // managing what to compare
@@ -363,15 +367,14 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                         if (inAssemblyButCRM.Count() == 0)
                         {
-                            //listViewInAssemblyButCRM.Visible = false;
                             labelAssemblyButCRMMatch.Visible = true;
                         }
                         else
                         {
-                            //listViewInAssemblyButCRM.Visible = true;
-                            labelAssemblyButCRMMatch.Visible = false;
-                            // Pushing values to the box
                             Invoke(new Action(() => {
+                                labelAssemblyButCRMMatch.Visible = false;
+
+                                // Pushing values to the box
                                 foreach (var item in inAssemblyButCRM)
                                     listViewInAssemblyButCRM.Items.Add(new ListViewItem(item));
 
@@ -467,7 +470,12 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         {
             if(message.TargetArgument != null)
             {
-                comboBoxAssemblyList.SelectedIndex = comboBoxAssemblyList.FindStringExact(message.TargetArgument);
+                int i = comboBoxAssemblyList.FindStringExact(message.TargetArgument);
+
+                if(i != -1)
+                {
+                    comboBoxAssemblyList.SelectedIndex = comboBoxAssemblyList.FindStringExact(message.TargetArgument);
+                }
             }
             this.log.LogData(EventType.Event, LogAction.LoadedFromOtherPlugin);
         }

@@ -67,6 +67,7 @@
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -212,7 +213,8 @@
             this.listViewPluginTypes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderPluginName,
             this.columnHeaderCreatedOn,
-            this.columnHeaderModifiedOn});
+            this.columnHeaderModifiedOn,
+            this.columnHeaderVersion});
             this.listViewPluginTypes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewPluginTypes.Location = new System.Drawing.Point(3, 16);
             this.listViewPluginTypes.Name = "listViewPluginTypes";
@@ -499,6 +501,10 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
+            // columnHeaderVersion
+            // 
+            this.columnHeaderVersion.Text = "Version";
+            // 
             // DeltaAssemblyvsCrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,5 +581,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ToolStripButton toolStripButtonViewSolutionsSteps;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ColumnHeader columnHeaderVersion;
     }
 }
