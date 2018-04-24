@@ -1,7 +1,7 @@
 ﻿<package>
   <metadata>
     <id>Carfup.XTBPlugins.DeltaAssemblyvsCrm</id>
-    <version>1.2018.1.18</version>
+    <version>1.2018.4.19</version>
     <title>Delta Plugins : Local Assembly vs CRM</title>
     <authors>Clement O.</authors>
     <owners>Clement O.</owners>
@@ -11,6 +11,11 @@
     <description>Find out which Plugin differences you have between your CRM Assembly and your Local one.</description>
     <summary>Really sweet plugin that does awesome things</summary>
     <releaseNotes>
+1.2018.4.19
+Added extra details related to the plugins loaded from the CRM.
+Fixed few issues related to concurrency of thread.
+Updating to support latest XrmToolBox version.
+
 1.2018.1.17/18
 Allow the plugin to log anonymous data, in order to improve the most used features and develop the others.
 
