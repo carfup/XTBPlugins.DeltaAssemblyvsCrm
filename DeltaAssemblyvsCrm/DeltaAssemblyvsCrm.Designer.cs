@@ -44,6 +44,7 @@
             this.columnHeaderPluginName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderCreatedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderModifiedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listViewPluginTypesAssembly = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +68,6 @@
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -222,6 +222,7 @@
             this.listViewPluginTypes.TabIndex = 8;
             this.listViewPluginTypes.UseCompatibleStateImageBehavior = false;
             this.listViewPluginTypes.View = System.Windows.Forms.View.Details;
+            this.listViewPluginTypes.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewPluginTypes_ColumnClick);
             // 
             // columnHeaderPluginName
             // 
@@ -239,6 +240,10 @@
             this.columnHeaderModifiedOn.DisplayIndex = 1;
             this.columnHeaderModifiedOn.Text = "Modified On";
             this.columnHeaderModifiedOn.Width = 93;
+            // 
+            // columnHeaderVersion
+            // 
+            this.columnHeaderVersion.Text = "Version";
             // 
             // groupBox2
             // 
@@ -266,6 +271,7 @@
             this.listViewPluginTypesAssembly.TabIndex = 9;
             this.listViewPluginTypesAssembly.UseCompatibleStateImageBehavior = false;
             this.listViewPluginTypesAssembly.View = System.Windows.Forms.View.Details;
+            this.listViewPluginTypesAssembly.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewPluginTypesAssembly_ColumnClick);
             // 
             // columnHeader1
             // 
@@ -500,10 +506,6 @@
             // 
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
-            // 
-            // columnHeaderVersion
-            // 
-            this.columnHeaderVersion.Text = "Version";
             // 
             // DeltaAssemblyvsCrm
             // 
