@@ -22,6 +22,7 @@ namespace Carfup.XTBPlugins.AppCode
             this.telemetry = new TelemetryClient();
             this.telemetry.Context.Component.Version = DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion;
             this.telemetry.Context.Device.Id = this.deltaVsCRM.GetType().Name;
+            this.telemetry.Context.User.Id = Guid.NewGuid().ToString();
         }
 
         public void updateForceLog()
@@ -65,7 +66,8 @@ namespace Carfup.XTBPlugins.AppCode
             Dictionary<string, string> dictionary = new Dictionary<string, string>
             {
                 { "plugin", telemetry.Context.Device.Id },
-                { "xtbversion", Assembly.GetEntryAssembly().GetName().Version.ToString() }
+                { "xtbversion", Assembly.GetEntryAssembly().GetName().Version.ToString() },
+                { "pluginversion", DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion }
             };
 
             if (action != null)
