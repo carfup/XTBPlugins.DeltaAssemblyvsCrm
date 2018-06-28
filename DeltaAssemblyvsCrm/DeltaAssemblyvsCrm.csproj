@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCode\ListViewItemComparer.cs" />
     <Compile Include="AppCode\LogUsage.cs" />
     <Compile Include="AppCode\PluginSettings.cs" />
     <Compile Include="DeltaAssemblyvsCrm.cs">
