@@ -26,6 +26,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         internal PluginSettings settings = new PluginSettings();
         LogUsage log = null;
         private int currentColumnOrder;
+        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
 
         public string RepositoryName => "XTBPlugins.DeltaAssemblyvsCrm";
 
@@ -133,9 +134,19 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             return;
                         }
 
-                        Type[] loadedAssemblyTypes = loadedAssembly.GetTypes();
+				        Type[] loadedAssemblyTypes;
 
-                        if (loadedAssemblyTypes == null || loadedAssemblyTypes.Count() == 0)
+				        try
+				        {
+				            loadedAssemblyTypes = loadedAssembly.GetTypes();
+                        }
+				        catch (ReflectionTypeLoadException eRtle)
+				        {
+				            loadedAssemblyTypes = eRtle.Types.Where(t => t != null).ToArray();
+                        }
+                        
+
+                        if (loadedAssemblyTypes == null || !loadedAssemblyTypes.Any())
                         {
                             MessageBox.Show(this, "Error while loading your assembly types", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -143,11 +154,12 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                         listOfPluginsTypeInAssembly = loadedAssemblyTypes
                         .Where(
-                            t => !(t.FullName.Contains("<>c")) && // standards classes
-                            (
-                                t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))  // plugins
-                                || (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
-                            )
+                            t => t.FullName != null && (!(t.FullName.Contains("<>c")) && // standards classes
+                                (
+                                    t.GetInterfaces().Contains(typeof(IPlugin)) || 
+                                    t.GetInterfaces().Contains(typeof(IPluginExecutionContext)) || // plugins
+                                    (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
+                                ))
                         ).ToList();
                     },
 				    PostWorkCallBack = evt =>
@@ -159,12 +171,14 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 						    return;
 					    }
 
-					    if(listOfPluginsTypeInAssembly != null && listOfPluginsTypeInAssembly.Count() > 0)
+					    if(listOfPluginsTypeInAssembly != null && listOfPluginsTypeInAssembly.Any())
                         {
                             foreach (var plugin in listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray())
                             {
-                                var item = new ListViewItem(plugin);
-                                item.Tag = plugin;
+                                var item = new ListViewItem(plugin)
+                                {
+                                    Tag = plugin
+                                };
 
                                 listViewPluginTypesAssembly.Items.Add((ListViewItem)item.Clone());
                             }
@@ -254,8 +268,6 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                         listViewPluginTypes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                         listViewPluginTypes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-                        //  listBoxPluginTypes.Items.AddRange(listOfPluginsTypesInCRM.Select(p => p.GetAttributeValue<string>("typename")).ToArray());
                     }
 						
 
@@ -345,6 +357,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                     if (inCRMButAssembly != null && inAssemblyButCRM != null)
                     {
+                        // Checking the plugin in CRM but not assembly
                         if (!inCRMButAssembly.Any())
                         {
                             labelCrmButAssemblyMatch.Visible = true;
@@ -363,6 +376,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             }));
                         }
 
+                        // Checking the plugin in assembly but not CRM
                         if (!inAssemblyButCRM.Any())
                         {
                             labelAssemblyButCRMMatch.Visible = true;
@@ -462,8 +476,6 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             }
         }
 
-        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
-
         public void OnIncomingMessage(MessageBusEventArgs message)
         {
             if(message.TargetArgument != null)
@@ -495,7 +507,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             OnOutgoingMessage(this, messageBusEventArgs);
         }
 
-        public void sortListView(ListView listView, int columnIndex, SortOrder? sort = null)
+        private void SortListView(ListView listView, int columnIndex, SortOrder? sort = null)
         {
             if (sort != null)
             {
@@ -516,12 +528,12 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
         private void listViewPluginTypes_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            sortListView(listViewPluginTypes, e.Column);
+            SortListView(listViewPluginTypes, e.Column);
         }
 
         private void listViewPluginTypesAssembly_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            sortListView(listViewPluginTypesAssembly, e.Column);
+            SortListView(listViewPluginTypesAssembly, e.Column);
         }
     }
 }
