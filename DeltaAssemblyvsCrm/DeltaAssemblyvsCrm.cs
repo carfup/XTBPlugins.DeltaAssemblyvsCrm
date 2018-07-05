@@ -26,11 +26,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         internal PluginSettings settings = new PluginSettings();
         LogUsage log = null;
 
-        public string RepositoryName { get { return "XTBPlugins.DeltaAssemblyvsCrm"; } }
+        public string RepositoryName => "XTBPlugins.DeltaAssemblyvsCrm";
 
-		public string UserName { get { return "carfup"; } }
+        public string UserName => "carfup";
 
-		#endregion
+        #endregion
 
 		public DeltaAssemblyvsCrm()
 		{
@@ -70,15 +70,18 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					{
 						if (e.Error != null)
 						{
-                            this.log.LogData(EventType.Exception, LogAction.CRMAssembliesLoaded, e.Error);
+                            log.LogData(EventType.Exception, LogAction.CRMAssembliesLoaded, e.Error);
                             MessageBox.Show(this, e.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							return;
 						}
 
 						if (listOfCRMAssemblies != null)
 						{
-							comboBoxAssemblyList.Items.AddRange(listOfCRMAssemblies);
-							comboBoxAssemblyList.Focus();
+						    if (comboBoxAssemblyList != null)
+						    {
+						        comboBoxAssemblyList.Items.AddRange(listOfCRMAssemblies);
+						        comboBoxAssemblyList.Focus();
+						    }
 						}
 
                         this.log.LogData(EventType.Event, LogAction.CRMAssembliesLoaded);
@@ -105,7 +108,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 }
             
                 labelLoadAssembly.Visible = true;
-			    labelLoadAssembly.Text = $"Your assembly : {filepath.Split('\\').Last()}";           
+			    labelLoadAssembly.Text = $@"Your assembly : {filepath.Split('\\').Last()}";           
 
                 AppDomain domain = AppDomain.CreateDomain(labelLoadAssembly.Text);
 
@@ -196,7 +199,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             if (!tabControl1.TabPages.Contains(tabPageResult))
                 tabControl1.TabPages.Add(tabPageResult);
 
-            ExecuteMethod(manageListToDisplay);
+            ExecuteMethod(ManageListToDisplay);
         }
 
 		private void comboBoxAssemblyList_Changed(object sender, EventArgs evt)
@@ -277,22 +280,17 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             CloseTool();
 		}
 
-        public object returnAliasedValue(Entity entity, string varName)
-        {
-            return entity.GetAttributeValue<AliasedValue>(varName) == null ? "" : entity.GetAttributeValue<AliasedValue>(varName).Value;
-        }
-
         private void checkBoxComparePlugins_CheckedChanged(object sender, EventArgs e)
         {
-            ExecuteMethod( manageListToDisplay);
+            ExecuteMethod(ManageListToDisplay);
         }
 
         private void checkBoxCompareWorkflows_CheckedChanged(object sender, EventArgs e)
         {
-            ExecuteMethod(manageListToDisplay);
+            ExecuteMethod(ManageListToDisplay);
         }
 
-        public void manageListToDisplay()
+        private void ManageListToDisplay()
         {
             // we clear the content of the list first
             listViewInAssemblyButCRM.Items.Clear();
@@ -307,7 +305,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 Work = (bw, evt) =>
                 {
                     // We have at least one workflow
-                    if (listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").Count() == 0)
+                    if (listOfPluginsTypeInAssembly.Count(t => t.BaseType != null && t.BaseType.Name == "CodeActivity") == 0)
                     {
                         this.Invoke(new Action(() => {
                             // removing the event to not fire the event
@@ -346,7 +344,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                     if (inCRMButAssembly != null && inAssemblyButCRM != null)
                     {
-                        if (inCRMButAssembly.Count() == 0)
+                        if (!inCRMButAssembly.Any())
                         {
                             labelCrmButAssemblyMatch.Visible = true;
                         }
@@ -364,7 +362,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             }));
                         }
 
-                        if (inAssemblyButCRM.Count() == 0)
+                        if (!inAssemblyButCRM.Any())
                         {
                             labelAssemblyButCRMMatch.Visible = true;
                         }
@@ -393,14 +391,14 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
         public void SaveSettings()
         {
-            this.log.LogData(EventType.Event, LogAction.SettingsSaved);
+            log.LogData(EventType.Event, LogAction.SettingsSaved);
             SettingsManager.Instance.Save(typeof(DeltaAssemblyvsCrm), settings);
         }
 
         private void DeltaAssemblyvsCrm_Load(object sender, EventArgs e)
         {
             log = new LogUsage(this);
-            this.log.LogData(EventType.Event, LogAction.PluginOpened);
+            log.LogData(EventType.Event, LogAction.PluginOpened);
             LoadSetting();
         }
        
@@ -418,15 +416,15 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             }
             catch (InvalidOperationException ex)
             {
-                this.log.LogData(EventType.Exception, LogAction.SettingLoaded, ex);
+                log.LogData(EventType.Exception, LogAction.SettingLoaded, ex);
             }
 
-            this.log.LogData(EventType.Event, LogAction.SettingLoaded);
+            log.LogData(EventType.Event, LogAction.SettingLoaded);
 
             if (!settings.AllowLogUsage.HasValue)
             {
-                this.log.PromptToLog();
-                this.SaveSettings();
+                log.PromptToLog();
+                SaveSettings();
             }
         }
 
@@ -483,7 +481,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         {
             var solutionName = comboBoxAssemblyList.SelectedItem.ToString();
 
-            if (solutionName == null || solutionName == "")
+            if (string.IsNullOrEmpty(solutionName))
             {
                 MessageBox.Show(this, "Please select a solution first to open the Steps details plugin.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

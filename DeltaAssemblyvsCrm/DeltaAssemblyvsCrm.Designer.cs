@@ -44,6 +44,7 @@
             this.columnHeaderPluginName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderCreatedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderModifiedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listViewPluginTypesAssembly = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +68,8 @@
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -87,7 +89,9 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonCloseTool,
+            this.toolStripSeparator1,
             this.toolStripButtonLoadPluginSteps,
+            this.toolStripSeparator2,
             this.toolStripButtonCompare,
             this.toolStripButtonViewSolutionsSteps,
             this.toolStripButtonOptions});
@@ -239,6 +243,10 @@
             this.columnHeaderModifiedOn.DisplayIndex = 1;
             this.columnHeaderModifiedOn.Text = "Modified On";
             this.columnHeaderModifiedOn.Width = 93;
+            // 
+            // columnHeaderVersion
+            // 
+            this.columnHeaderVersion.Text = "Version";
             // 
             // groupBox2
             // 
@@ -501,9 +509,15 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
-            // columnHeaderVersion
+            // toolStripSeparator1
             // 
-            this.columnHeaderVersion.Text = "Version";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -582,5 +596,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonViewSolutionsSteps;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ColumnHeader columnHeaderVersion;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
