@@ -25,6 +25,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 		private string[] inAssemblyButCRM = null;
         internal PluginSettings settings = new PluginSettings();
         LogUsage log = null;
+        private int currentColumnOrder;
 
         public string RepositoryName => "XTBPlugins.DeltaAssemblyvsCrm";
 
@@ -492,6 +493,35 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 TargetArgument = solutionName
             };
             OnOutgoingMessage(this, messageBusEventArgs);
+        }
+
+        public void sortListView(ListView listView, int columnIndex, SortOrder? sort = null)
+        {
+            if (sort != null)
+            {
+                listView.ListViewItemSorter = new ListViewItemComparer(columnIndex, sort.Value);
+            }
+            else if (columnIndex == currentColumnOrder)
+            {
+                listView.Sorting = listView.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+
+                listView.ListViewItemSorter = new ListViewItemComparer(columnIndex, listView.Sorting);
+            }
+            else
+            {
+                currentColumnOrder = columnIndex;
+                listView.ListViewItemSorter = new ListViewItemComparer(columnIndex, SortOrder.Ascending);
+            }
+        }
+
+        private void listViewPluginTypes_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            sortListView(listViewPluginTypes, e.Column);
+        }
+
+        private void listViewPluginTypesAssembly_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            sortListView(listViewPluginTypesAssembly, e.Column);
         }
     }
 }
