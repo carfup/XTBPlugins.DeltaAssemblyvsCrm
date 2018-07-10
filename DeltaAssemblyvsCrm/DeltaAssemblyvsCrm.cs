@@ -24,7 +24,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         private string[] inCRMButAssembly = null;
 		private string[] inAssemblyButCRM = null;
         internal PluginSettings settings = new PluginSettings();
-        LogUsage log = null;
+        public LogUsage log = null;
         private int currentColumnOrder;
         public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
 
@@ -192,10 +192,14 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             MessageBox.Show(this, "No plugins found is your assembly!\n\nPlease select an assembly related to your CRM Plugins.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
 
-                        if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
-                            toolStripButtonCompare.Visible = true;
+				        if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
+				        {
+				            toolStripButtonCompare.Visible = true;
+				            toolStripSeparatorCompare.Visible = true;
 
-                        this.log.LogData(EventType.Event, LogAction.AssemblyLoaded);
+				        }
+
+				        this.log.LogData(EventType.Event, LogAction.AssemblyLoaded);
                     },
 				    ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
 			    });
@@ -206,6 +210,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             {
                 labelLoadAssembly.Text = "";
                 toolStripButtonCompare.Visible = false;
+                toolStripSeparatorCompare.Visible = false;
             }
         }
 
@@ -269,12 +274,16 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                         listViewPluginTypes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                         listViewPluginTypes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                     }
-						
 
-					if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
-                        toolStripButtonCompare.Visible = true;
 
-                    this.log.LogData(EventType.Event, LogAction.PluginsLoaded);
+				    if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
+				    {
+				        toolStripButtonCompare.Visible = true;
+				        toolStripSeparatorCompare.Visible = true;
+
+				    }
+
+				    this.log.LogData(EventType.Event, LogAction.PluginsLoaded);
                 },
 				ProgressChanged = e => { SetWorkingMessage(e.UserState.ToString()); }
 			});
@@ -408,6 +417,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         {
             log.LogData(EventType.Event, LogAction.SettingsSaved);
             SettingsManager.Instance.Save(typeof(DeltaAssemblyvsCrm), settings);
+
+            SortListView(listViewPluginTypes, 0, settings.SortOrderPref);
+            SortListView(listViewPluginTypesAssembly, 0, settings.SortOrderPref);
+            SortListView(listViewInCRMButAssembly, 0, settings.SortOrderPref);
+            SortListView(listViewInAssemblyButCRM, 0, settings.SortOrderPref);
         }
 
         private void DeltaAssemblyvsCrm_Load(object sender, EventArgs e)
@@ -535,5 +549,23 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         {
             SortListView(listViewPluginTypesAssembly, e.Column);
         }
+
+        private void listViewInCRMButAssembly_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(listViewInCRMButAssembly, e.Column);
+        }
+
+        private void listViewInAssemblyButCRM_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(listViewInAssemblyButCRM, e.Column);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            var helpDlg = new HelpForm(this);
+            helpDlg.ShowDialog(this);
+        }
+
+        
     }
 }

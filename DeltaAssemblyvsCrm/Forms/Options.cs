@@ -22,6 +22,8 @@ namespace Carfup.XTBPlugins.Forms
             }
 
             checkboxAllowStats.Checked = settings.AllowLogUsage != false;
+            radioButtonSortingOrderAsc.Checked = (settings.SortOrderPref == SortOrder.Ascending || settings.SortOrderPref == null);
+            radioButtonSortingOrderDesc.Checked = !radioButtonSortingOrderAsc.Checked;
         }
 
         internal PluginSettings GetSettings()
@@ -29,6 +31,7 @@ namespace Carfup.XTBPlugins.Forms
             var settings = this.deltaVsCRM.settings;
             settings.AllowLogUsage = checkboxAllowStats.Checked;
             settings.CurrentVersion = DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion;
+            settings.SortOrderPref = (radioButtonSortingOrderAsc.Checked || settings.SortOrderPref == null) ? SortOrder.Ascending : SortOrder.Descending;
 
             return settings;
         }
