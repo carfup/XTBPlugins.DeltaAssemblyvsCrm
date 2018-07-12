@@ -156,8 +156,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                         .Where(
                             t => t.FullName != null && (!(t.FullName.Contains("<>c")) && // standards classes
                                 (
-                                    t.GetInterfaces().Contains(typeof(IPlugin)) || 
-                                    t.GetInterfaces().Contains(typeof(IPluginExecutionContext)) || // plugins
+                                    t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext)) || // plugins
                                     (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
                                 ))
                         ).ToList();
@@ -173,12 +172,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
 					    if(listOfPluginsTypeInAssembly != null && listOfPluginsTypeInAssembly.Any())
                         {
-                            foreach (var plugin in listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray())
+                            foreach (var plugin in listOfPluginsTypeInAssembly)
                             {
-                                var item = new ListViewItem(plugin)
-                                {
-                                    Tag = plugin
-                                };
+                                var item = new ListViewItem(plugin.FullName);
+                                item.SubItems.Add((plugin.BaseType != null ? plugin.BaseType.Name : "Unknown"));
+                                item.Tag = plugin.FullName;
 
                                 listViewPluginTypesAssembly.Items.Add((ListViewItem)item.Clone());
                             }
@@ -186,7 +184,6 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             listViewPluginTypesAssembly.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                             listViewPluginTypesAssembly.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                         }
-                       //     listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray());
                         else
                         {
                             MessageBox.Show(this, "No plugins found is your assembly!\n\nPlease select an assembly related to your CRM Plugins.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);

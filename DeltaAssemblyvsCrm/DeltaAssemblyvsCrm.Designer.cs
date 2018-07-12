@@ -30,10 +30,16 @@
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeltaAssemblyvsCrm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparatorCompare = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonViewSolutionsSteps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
@@ -48,6 +54,8 @@
             this.listViewPluginTypesAssembly = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxAssemblyList = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.labelLoadAssembly = new System.Windows.Forms.Label();
             this.buttonLoadAssembly = new System.Windows.Forms.Button();
@@ -65,14 +73,7 @@
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.comboBoxAssemblyList = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonViewSolutionsSteps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -107,15 +108,44 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButtonCloseTool
+            // 
+            this.toolStripButtonCloseTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCloseTool.Image = global::Carfup.XTBPlugins.Properties.Resources.close;
+            this.toolStripButtonCloseTool.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCloseTool.Name = "toolStripButtonCloseTool";
+            this.toolStripButtonCloseTool.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonCloseTool.Text = "toolStripButton1";
+            this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButtonLoadPluginSteps
+            // 
+            this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
+            this.toolStripButtonLoadPluginSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoadPluginSteps.Name = "toolStripButtonLoadPluginSteps";
+            this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
+            this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
+            this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonCompare
+            // 
+            this.toolStripButtonCompare.Image = global::Carfup.XTBPlugins.Properties.Resources.compare;
+            this.toolStripButtonCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCompare.Name = "toolStripButtonCompare";
+            this.toolStripButtonCompare.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButtonCompare.Text = "Compare";
+            this.toolStripButtonCompare.Visible = false;
+            this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
             // 
             // toolStripSeparatorCompare
             // 
@@ -123,10 +153,38 @@
             this.toolStripSeparatorCompare.Size = new System.Drawing.Size(6, 25);
             this.toolStripSeparatorCompare.Visible = false;
             // 
+            // toolStripButtonViewSolutionsSteps
+            // 
+            this.toolStripButtonViewSolutionsSteps.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonViewSolutionsSteps.Image")));
+            this.toolStripButtonViewSolutionsSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonViewSolutionsSteps.Name = "toolStripButtonViewSolutionsSteps";
+            this.toolStripButtonViewSolutionsSteps.Size = new System.Drawing.Size(136, 22);
+            this.toolStripButtonViewSolutionsSteps.Text = "View solution\'s steps";
+            this.toolStripButtonViewSolutionsSteps.Visible = false;
+            this.toolStripButtonViewSolutionsSteps.Click += new System.EventHandler(this.toolStripButtonViewSolutionsSteps_Click);
+            // 
+            // toolStripButtonOptions
+            // 
+            this.toolStripButtonOptions.Image = global::Carfup.XTBPlugins.Properties.Resources.gear;
+            this.toolStripButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonOptions.Name = "toolStripButtonOptions";
+            this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
+            this.toolStripButtonOptions.Text = "Options";
+            this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonHelp
+            // 
+            this.toolStripButtonHelp.Image = global::Carfup.XTBPlugins.Properties.Resources.help;
+            this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonHelp.Name = "toolStripButtonHelp";
+            this.toolStripButtonHelp.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButtonHelp.Text = "Help";
+            this.toolStripButtonHelp.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -246,7 +304,8 @@
             // 
             this.listViewPluginTypesAssembly.AllowColumnReorder = true;
             this.listViewPluginTypesAssembly.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader4});
             this.listViewPluginTypesAssembly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewPluginTypesAssembly.Location = new System.Drawing.Point(3, 16);
             this.listViewPluginTypesAssembly.Name = "listViewPluginTypesAssembly";
@@ -273,6 +332,27 @@
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "CRM Assembly";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Select your CRM Assembly:";
+            // 
+            // comboBoxAssemblyList
+            // 
+            this.comboBoxAssemblyList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAssemblyList.FormattingEnabled = true;
+            this.comboBoxAssemblyList.Location = new System.Drawing.Point(153, 19);
+            this.comboBoxAssemblyList.MinimumSize = new System.Drawing.Size(40, 0);
+            this.comboBoxAssemblyList.Name = "comboBoxAssemblyList";
+            this.comboBoxAssemblyList.Size = new System.Drawing.Size(376, 21);
+            this.comboBoxAssemblyList.TabIndex = 11;
+            this.comboBoxAssemblyList.SelectedIndexChanged += new System.EventHandler(this.comboBoxAssemblyList_Changed);
             // 
             // groupBox6
             // 
@@ -471,83 +551,10 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
-            // comboBoxAssemblyList
+            // columnHeader4
             // 
-            this.comboBoxAssemblyList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxAssemblyList.FormattingEnabled = true;
-            this.comboBoxAssemblyList.Location = new System.Drawing.Point(153, 19);
-            this.comboBoxAssemblyList.MinimumSize = new System.Drawing.Size(40, 0);
-            this.comboBoxAssemblyList.Name = "comboBoxAssemblyList";
-            this.comboBoxAssemblyList.Size = new System.Drawing.Size(376, 21);
-            this.comboBoxAssemblyList.TabIndex = 11;
-            this.comboBoxAssemblyList.SelectedIndexChanged += new System.EventHandler(this.comboBoxAssemblyList_Changed);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Select your CRM Assembly:";
-            // 
-            // toolStripButtonCloseTool
-            // 
-            this.toolStripButtonCloseTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCloseTool.Image = global::Carfup.XTBPlugins.Properties.Resources.close;
-            this.toolStripButtonCloseTool.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCloseTool.Name = "toolStripButtonCloseTool";
-            this.toolStripButtonCloseTool.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonCloseTool.Text = "toolStripButton1";
-            this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
-            // 
-            // toolStripButtonLoadPluginSteps
-            // 
-            this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
-            this.toolStripButtonLoadPluginSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonLoadPluginSteps.Name = "toolStripButtonLoadPluginSteps";
-            this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
-            this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
-            this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
-            // 
-            // toolStripButtonCompare
-            // 
-            this.toolStripButtonCompare.Image = global::Carfup.XTBPlugins.Properties.Resources.compare;
-            this.toolStripButtonCompare.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCompare.Name = "toolStripButtonCompare";
-            this.toolStripButtonCompare.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButtonCompare.Text = "Compare";
-            this.toolStripButtonCompare.Visible = false;
-            this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
-            // 
-            // toolStripButtonViewSolutionsSteps
-            // 
-            this.toolStripButtonViewSolutionsSteps.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonViewSolutionsSteps.Image")));
-            this.toolStripButtonViewSolutionsSteps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonViewSolutionsSteps.Name = "toolStripButtonViewSolutionsSteps";
-            this.toolStripButtonViewSolutionsSteps.Size = new System.Drawing.Size(136, 22);
-            this.toolStripButtonViewSolutionsSteps.Text = "View solution\'s steps";
-            this.toolStripButtonViewSolutionsSteps.Visible = false;
-            this.toolStripButtonViewSolutionsSteps.Click += new System.EventHandler(this.toolStripButtonViewSolutionsSteps_Click);
-            // 
-            // toolStripButtonOptions
-            // 
-            this.toolStripButtonOptions.Image = global::Carfup.XTBPlugins.Properties.Resources.gear;
-            this.toolStripButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonOptions.Name = "toolStripButtonOptions";
-            this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
-            this.toolStripButtonOptions.Text = "Options";
-            this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
-            // 
-            // toolStripButtonHelp
-            // 
-            this.toolStripButtonHelp.Image = global::Carfup.XTBPlugins.Properties.Resources.help;
-            this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonHelp.Name = "toolStripButtonHelp";
-            this.toolStripButtonHelp.Size = new System.Drawing.Size(52, 22);
-            this.toolStripButtonHelp.Text = "Help";
-            this.toolStripButtonHelp.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.columnHeader4.Text = "BaseType";
+            this.columnHeader4.Width = 120;
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -631,5 +638,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparatorCompare;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxAssemblyList;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
