@@ -42,7 +42,6 @@ Compare plugins contained into your local assembly against the plugins on your C
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Carfup.XTBPlugins.*.dll" target="lib\net462\Plugins" />
-	<file src="bin\Release\Microsoft.ApplicationInsights.dll" target="lib\net46\Plugins" />
+    <file src="bin\Release\Merged\Carfup.XTBPlugins.*.dll" target="lib\net462\Plugins" />
   </files>
 </package>
