@@ -24,13 +24,15 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         private string[] inCRMButAssembly = null;
 		private string[] inAssemblyButCRM = null;
         internal PluginSettings settings = new PluginSettings();
-        LogUsage log = null;
+        public LogUsage log = null;
+        private int currentColumnOrder;
+        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
 
-        public string RepositoryName { get { return "XTBPlugins.DeltaAssemblyvsCrm"; } }
+        public string RepositoryName => "XTBPlugins.DeltaAssemblyvsCrm";
 
-		public string UserName { get { return "carfup"; } }
+        public string UserName => "carfup";
 
-		#endregion
+        #endregion
 
 		public DeltaAssemblyvsCrm()
 		{
@@ -70,15 +72,18 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 					{
 						if (e.Error != null)
 						{
-                            this.log.LogData(EventType.Exception, LogAction.CRMAssembliesLoaded, e.Error);
+                            log.LogData(EventType.Exception, LogAction.CRMAssembliesLoaded, e.Error);
                             MessageBox.Show(this, e.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							return;
 						}
 
 						if (listOfCRMAssemblies != null)
 						{
-							comboBoxAssemblyList.Items.AddRange(listOfCRMAssemblies);
-							comboBoxAssemblyList.Focus();
+						    if (comboBoxAssemblyList != null)
+						    {
+						        comboBoxAssemblyList.Items.AddRange(listOfCRMAssemblies);
+						        comboBoxAssemblyList.Focus();
+						    }
 						}
 
                         this.log.LogData(EventType.Event, LogAction.CRMAssembliesLoaded);
@@ -105,7 +110,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 }
             
                 labelLoadAssembly.Visible = true;
-			    labelLoadAssembly.Text = $"Your assembly : {filepath.Split('\\').Last()}";           
+			    labelLoadAssembly.Text = $@"Your assembly : {filepath.Split('\\').Last()}";           
 
                 AppDomain domain = AppDomain.CreateDomain(labelLoadAssembly.Text);
 
@@ -129,9 +134,19 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             return;
                         }
 
-                        Type[] loadedAssemblyTypes = loadedAssembly.GetTypes();
+				        Type[] loadedAssemblyTypes;
 
-                        if (loadedAssemblyTypes == null || loadedAssemblyTypes.Count() == 0)
+				        try
+				        {
+				            loadedAssemblyTypes = loadedAssembly.GetTypes();
+                        }
+				        catch (ReflectionTypeLoadException eRtle)
+				        {
+				            loadedAssemblyTypes = eRtle.Types.Where(t => t != null).ToArray();
+                        }
+                        
+
+                        if (loadedAssemblyTypes == null || !loadedAssemblyTypes.Any())
                         {
                             MessageBox.Show(this, "Error while loading your assembly types", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -139,11 +154,11 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                         listOfPluginsTypeInAssembly = loadedAssemblyTypes
                         .Where(
-                            t => !(t.FullName.Contains("<>c")) && // standards classes
-                            (
-                                t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext))  // plugins
-                                || (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
-                            )
+                            t => t.FullName != null && (!(t.FullName.Contains("<>c")) && // standards classes
+                                (
+                                    t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext)) || // plugins
+                                    (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
+                                ))
                         ).ToList();
                     },
 				    PostWorkCallBack = evt =>
@@ -155,12 +170,13 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 						    return;
 					    }
 
-					    if(listOfPluginsTypeInAssembly != null && listOfPluginsTypeInAssembly.Count() > 0)
+					    if(listOfPluginsTypeInAssembly != null && listOfPluginsTypeInAssembly.Any())
                         {
-                            foreach (var plugin in listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray())
+                            foreach (var plugin in listOfPluginsTypeInAssembly)
                             {
-                                var item = new ListViewItem(plugin);
-                                item.Tag = plugin;
+                                var item = new ListViewItem(plugin.FullName);
+                                item.SubItems.Add((plugin.BaseType != null ? plugin.BaseType.Name : "Unknown"));
+                                item.Tag = plugin.FullName;
 
                                 listViewPluginTypesAssembly.Items.Add((ListViewItem)item.Clone());
                             }
@@ -168,16 +184,19 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             listViewPluginTypesAssembly.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                             listViewPluginTypesAssembly.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                         }
-                       //     listBoxPluginTypesAssembly.Items.AddRange(listOfPluginsTypeInAssembly.Select(t => t.FullName).ToArray());
                         else
                         {
                             MessageBox.Show(this, "No plugins found is your assembly!\n\nPlease select an assembly related to your CRM Plugins.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
 
-                        if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
-                            toolStripButtonCompare.Visible = true;
+				        if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
+				        {
+				            toolStripButtonCompare.Visible = true;
+				            toolStripSeparatorCompare.Visible = true;
 
-                        this.log.LogData(EventType.Event, LogAction.AssemblyLoaded);
+				        }
+
+				        this.log.LogData(EventType.Event, LogAction.AssemblyLoaded);
                     },
 				    ProgressChanged = evt => { SetWorkingMessage(evt.UserState.ToString()); }
 			    });
@@ -188,6 +207,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             {
                 labelLoadAssembly.Text = "";
                 toolStripButtonCompare.Visible = false;
+                toolStripSeparatorCompare.Visible = false;
             }
         }
 
@@ -196,7 +216,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             if (!tabControl1.TabPages.Contains(tabPageResult))
                 tabControl1.TabPages.Add(tabPageResult);
 
-            ExecuteMethod(manageListToDisplay);
+            ExecuteMethod(ManageListToDisplay);
         }
 
 		private void comboBoxAssemblyList_Changed(object sender, EventArgs evt)
@@ -250,15 +270,17 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                         listViewPluginTypes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                         listViewPluginTypes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-                        //  listBoxPluginTypes.Items.AddRange(listOfPluginsTypesInCRM.Select(p => p.GetAttributeValue<string>("typename")).ToArray());
                     }
-						
 
-					if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
-                        toolStripButtonCompare.Visible = true;
 
-                    this.log.LogData(EventType.Event, LogAction.PluginsLoaded);
+				    if (listViewPluginTypes.Items.Count > 0 && listViewPluginTypesAssembly.Items.Count > 0)
+				    {
+				        toolStripButtonCompare.Visible = true;
+				        toolStripSeparatorCompare.Visible = true;
+
+				    }
+
+				    this.log.LogData(EventType.Event, LogAction.PluginsLoaded);
                 },
 				ProgressChanged = e => { SetWorkingMessage(e.UserState.ToString()); }
 			});
@@ -277,22 +299,17 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             CloseTool();
 		}
 
-        public object returnAliasedValue(Entity entity, string varName)
-        {
-            return entity.GetAttributeValue<AliasedValue>(varName) == null ? "" : entity.GetAttributeValue<AliasedValue>(varName).Value;
-        }
-
         private void checkBoxComparePlugins_CheckedChanged(object sender, EventArgs e)
         {
-            ExecuteMethod( manageListToDisplay);
+            ExecuteMethod(ManageListToDisplay);
         }
 
         private void checkBoxCompareWorkflows_CheckedChanged(object sender, EventArgs e)
         {
-            ExecuteMethod(manageListToDisplay);
+            ExecuteMethod(ManageListToDisplay);
         }
 
-        public void manageListToDisplay()
+        private void ManageListToDisplay()
         {
             // we clear the content of the list first
             listViewInAssemblyButCRM.Items.Clear();
@@ -307,7 +324,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 Work = (bw, evt) =>
                 {
                     // We have at least one workflow
-                    if (listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").Count() == 0)
+                    if (listOfPluginsTypeInAssembly.Count(t => t.BaseType != null && t.BaseType.Name == "CodeActivity") == 0)
                     {
                         this.Invoke(new Action(() => {
                             // removing the event to not fire the event
@@ -346,7 +363,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
                     if (inCRMButAssembly != null && inAssemblyButCRM != null)
                     {
-                        if (inCRMButAssembly.Count() == 0)
+                        // Checking the plugin in CRM but not assembly
+                        if (!inCRMButAssembly.Any())
                         {
                             labelCrmButAssemblyMatch.Visible = true;
                         }
@@ -364,7 +382,8 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                             }));
                         }
 
-                        if (inAssemblyButCRM.Count() == 0)
+                        // Checking the plugin in assembly but not CRM
+                        if (!inAssemblyButCRM.Any())
                         {
                             labelAssemblyButCRMMatch.Visible = true;
                         }
@@ -393,14 +412,19 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
 
         public void SaveSettings()
         {
-            this.log.LogData(EventType.Event, LogAction.SettingsSaved);
+            log.LogData(EventType.Event, LogAction.SettingsSaved);
             SettingsManager.Instance.Save(typeof(DeltaAssemblyvsCrm), settings);
+
+            SortListView(listViewPluginTypes, 0, settings.SortOrderPref);
+            SortListView(listViewPluginTypesAssembly, 0, settings.SortOrderPref);
+            SortListView(listViewInCRMButAssembly, 0, settings.SortOrderPref);
+            SortListView(listViewInAssemblyButCRM, 0, settings.SortOrderPref);
         }
 
         private void DeltaAssemblyvsCrm_Load(object sender, EventArgs e)
         {
             log = new LogUsage(this);
-            this.log.LogData(EventType.Event, LogAction.PluginOpened);
+            log.LogData(EventType.Event, LogAction.PluginOpened);
             LoadSetting();
         }
        
@@ -418,15 +442,15 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             }
             catch (InvalidOperationException ex)
             {
-                this.log.LogData(EventType.Exception, LogAction.SettingLoaded, ex);
+                log.LogData(EventType.Exception, LogAction.SettingLoaded, ex);
             }
 
-            this.log.LogData(EventType.Event, LogAction.SettingLoaded);
+            log.LogData(EventType.Event, LogAction.SettingLoaded);
 
             if (!settings.AllowLogUsage.HasValue)
             {
-                this.log.PromptToLog();
-                this.SaveSettings();
+                log.PromptToLog();
+                SaveSettings();
             }
         }
 
@@ -463,8 +487,6 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             }
         }
 
-        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
-
         public void OnIncomingMessage(MessageBusEventArgs message)
         {
             if(message.TargetArgument != null)
@@ -483,7 +505,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
         {
             var solutionName = comboBoxAssemblyList.SelectedItem.ToString();
 
-            if (solutionName == null || solutionName == "")
+            if (string.IsNullOrEmpty(solutionName))
             {
                 MessageBox.Show(this, "Please select a solution first to open the Steps details plugin.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -495,5 +517,52 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
             };
             OnOutgoingMessage(this, messageBusEventArgs);
         }
+
+        private void SortListView(ListView listView, int columnIndex, SortOrder? sort = null)
+        {
+            if (sort != null)
+            {
+                listView.ListViewItemSorter = new ListViewItemComparer(columnIndex, sort.Value);
+            }
+            else if (columnIndex == currentColumnOrder)
+            {
+                listView.Sorting = listView.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+
+                listView.ListViewItemSorter = new ListViewItemComparer(columnIndex, listView.Sorting);
+            }
+            else
+            {
+                currentColumnOrder = columnIndex;
+                listView.ListViewItemSorter = new ListViewItemComparer(columnIndex, SortOrder.Ascending);
+            }
+        }
+
+        private void listViewPluginTypes_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(listViewPluginTypes, e.Column);
+        }
+
+        private void listViewPluginTypesAssembly_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(listViewPluginTypesAssembly, e.Column);
+        }
+
+        private void listViewInCRMButAssembly_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(listViewInCRMButAssembly, e.Column);
+        }
+
+        private void listViewInAssemblyButCRM_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(listViewInAssemblyButCRM, e.Column);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            var helpDlg = new HelpForm(this);
+            helpDlg.ShowDialog(this);
+        }
+
+        
     }
 }

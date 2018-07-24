@@ -1,10 +1,12 @@
-﻿
+﻿using System.Windows.Forms;
+
 namespace Carfup.XTBPlugins.AppCode
 {
     public class PluginSettings
     {
         public bool? AllowLogUsage { get; set; }
         public string CurrentVersion { get; set; } = DeltaAssemblyvsCrm.DeltaAssemblyvsCrm.CurrentVersion;
+        public SortOrder? SortOrderPref { get; set; } = SortOrder.Ascending;
     }
 
     // EventType to qualify which type of telemetry we send
@@ -36,5 +38,6 @@ namespace Carfup.XTBPlugins.AppCode
         public const string PluginOpened = "PluginOpened";
         public const string PluginsCompared = "PluginsCompared";
         public const string LoadedFromOtherPlugin = "LoadedFromOtherPlugin";
+        public const string ShowHelpScreen = "ShowHelpScreen";
     }
 }

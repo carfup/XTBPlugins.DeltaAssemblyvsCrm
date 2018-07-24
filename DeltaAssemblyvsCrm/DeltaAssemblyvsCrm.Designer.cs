@@ -31,10 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeltaAssemblyvsCrm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonCloseTool = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonLoadPluginSteps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonCompare = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparatorCompare = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonViewSolutionsSteps = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOptions = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogLoadAssembly = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLoad = new System.Windows.Forms.TabPage();
@@ -44,6 +49,7 @@
             this.columnHeaderPluginName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderCreatedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderModifiedOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listViewPluginTypesAssembly = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +73,7 @@
             this.checkBoxCompareWorkflows = new System.Windows.Forms.CheckBox();
             this.checkBoxComparePlugins = new System.Windows.Forms.CheckBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLoad.SuspendLayout();
@@ -87,10 +93,15 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonCloseTool,
+            this.toolStripSeparator1,
             this.toolStripButtonLoadPluginSteps,
+            this.toolStripSeparator2,
             this.toolStripButtonCompare,
+            this.toolStripSeparatorCompare,
             this.toolStripButtonViewSolutionsSteps,
-            this.toolStripButtonOptions});
+            this.toolStripButtonOptions,
+            this.toolStripSeparator3,
+            this.toolStripButtonHelp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1134, 25);
@@ -107,6 +118,11 @@
             this.toolStripButtonCloseTool.Text = "toolStripButton1";
             this.toolStripButtonCloseTool.Click += new System.EventHandler(this.toolStripButtonCloseTool_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButtonLoadPluginSteps
             // 
             this.toolStripButtonLoadPluginSteps.Image = global::Carfup.XTBPlugins.Properties.Resources.load;
@@ -115,6 +131,11 @@
             this.toolStripButtonLoadPluginSteps.Size = new System.Drawing.Size(144, 22);
             this.toolStripButtonLoadPluginSteps.Text = "Load CRM Assemblies";
             this.toolStripButtonLoadPluginSteps.Click += new System.EventHandler(this.toolStripButtonLoadPluginStepsClick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButtonCompare
             // 
@@ -125,6 +146,12 @@
             this.toolStripButtonCompare.Text = "Compare";
             this.toolStripButtonCompare.Visible = false;
             this.toolStripButtonCompare.Click += new System.EventHandler(this.toolStripButtonCompare_Click);
+            // 
+            // toolStripSeparatorCompare
+            // 
+            this.toolStripSeparatorCompare.Name = "toolStripSeparatorCompare";
+            this.toolStripSeparatorCompare.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparatorCompare.Visible = false;
             // 
             // toolStripButtonViewSolutionsSteps
             // 
@@ -144,6 +171,20 @@
             this.toolStripButtonOptions.Size = new System.Drawing.Size(69, 22);
             this.toolStripButtonOptions.Text = "Options";
             this.toolStripButtonOptions.Click += new System.EventHandler(this.toolStripButtonOptions_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonHelp
+            // 
+            this.toolStripButtonHelp.Image = global::Carfup.XTBPlugins.Properties.Resources.help;
+            this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonHelp.Name = "toolStripButtonHelp";
+            this.toolStripButtonHelp.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButtonHelp.Text = "Help";
+            this.toolStripButtonHelp.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // openFileDialogLoadAssembly
             // 
@@ -222,6 +263,7 @@
             this.listViewPluginTypes.TabIndex = 8;
             this.listViewPluginTypes.UseCompatibleStateImageBehavior = false;
             this.listViewPluginTypes.View = System.Windows.Forms.View.Details;
+            this.listViewPluginTypes.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewPluginTypes_ColumnClick);
             // 
             // columnHeaderPluginName
             // 
@@ -239,6 +281,10 @@
             this.columnHeaderModifiedOn.DisplayIndex = 1;
             this.columnHeaderModifiedOn.Text = "Modified On";
             this.columnHeaderModifiedOn.Width = 93;
+            // 
+            // columnHeaderVersion
+            // 
+            this.columnHeaderVersion.Text = "Version";
             // 
             // groupBox2
             // 
@@ -258,7 +304,8 @@
             // 
             this.listViewPluginTypesAssembly.AllowColumnReorder = true;
             this.listViewPluginTypesAssembly.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader4});
             this.listViewPluginTypesAssembly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewPluginTypesAssembly.Location = new System.Drawing.Point(3, 16);
             this.listViewPluginTypesAssembly.Name = "listViewPluginTypesAssembly";
@@ -266,6 +313,7 @@
             this.listViewPluginTypesAssembly.TabIndex = 9;
             this.listViewPluginTypesAssembly.UseCompatibleStateImageBehavior = false;
             this.listViewPluginTypesAssembly.View = System.Windows.Forms.View.Details;
+            this.listViewPluginTypesAssembly.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewPluginTypesAssembly_ColumnClick);
             // 
             // columnHeader1
             // 
@@ -407,6 +455,7 @@
             this.listViewInCRMButAssembly.TabIndex = 16;
             this.listViewInCRMButAssembly.UseCompatibleStateImageBehavior = false;
             this.listViewInCRMButAssembly.View = System.Windows.Forms.View.Details;
+            this.listViewInCRMButAssembly.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewInCRMButAssembly_ColumnClick);
             // 
             // columnHeader2
             // 
@@ -451,6 +500,7 @@
             this.listViewInAssemblyButCRM.TabIndex = 18;
             this.listViewInAssemblyButCRM.UseCompatibleStateImageBehavior = false;
             this.listViewInAssemblyButCRM.View = System.Windows.Forms.View.Details;
+            this.listViewInAssemblyButCRM.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewInAssemblyButCRM_ColumnClick);
             // 
             // columnHeader3
             // 
@@ -501,9 +551,10 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
-            // columnHeaderVersion
+            // columnHeader4
             // 
-            this.columnHeaderVersion.Text = "Version";
+            this.columnHeader4.Text = "BaseType";
+            this.columnHeader4.Width = 120;
             // 
             // DeltaAssemblyvsCrm
             // 
@@ -557,8 +608,6 @@
 		private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBoxAssemblyList;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label labelLoadAssembly;
         private System.Windows.Forms.Button buttonLoadAssembly;
@@ -582,5 +631,13 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonViewSolutionsSteps;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ColumnHeader columnHeaderVersion;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparatorCompare;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxAssemblyList;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

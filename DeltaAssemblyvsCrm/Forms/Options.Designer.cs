@@ -33,7 +33,11 @@
             this.checkboxAllowStats = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonSortingOrderDesc = new System.Windows.Forms.RadioButton();
+            this.radioButtonSortingOrderAsc = new System.Windows.Forms.RadioButton();
             this.bgStats.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bgStats
@@ -43,7 +47,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bgStats.Controls.Add(this.label1);
             this.bgStats.Controls.Add(this.checkboxAllowStats);
-            this.bgStats.Location = new System.Drawing.Point(12, 12);
+            this.bgStats.Location = new System.Drawing.Point(12, 99);
             this.bgStats.Name = "bgStats";
             this.bgStats.Size = new System.Drawing.Size(402, 117);
             this.bgStats.TabIndex = 6;
@@ -77,7 +81,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(340, 135);
+            this.buttonCancel.Location = new System.Drawing.Point(340, 222);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 9;
@@ -88,7 +92,7 @@
             // buttonOk
             // 
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Location = new System.Drawing.Point(259, 135);
+            this.buttonOk.Location = new System.Drawing.Point(259, 222);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 23);
             this.buttonOk.TabIndex = 8;
@@ -96,11 +100,47 @@
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Controls.Add(this.radioButtonSortingOrderDesc);
+            this.groupBox3.Controls.Add(this.radioButtonSortingOrderAsc);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(221, 81);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Result sorting";
+            // 
+            // radioButtonSortingOrderDesc
+            // 
+            this.radioButtonSortingOrderDesc.AutoSize = true;
+            this.radioButtonSortingOrderDesc.Location = new System.Drawing.Point(6, 46);
+            this.radioButtonSortingOrderDesc.Name = "radioButtonSortingOrderDesc";
+            this.radioButtonSortingOrderDesc.Size = new System.Drawing.Size(82, 17);
+            this.radioButtonSortingOrderDesc.TabIndex = 1;
+            this.radioButtonSortingOrderDesc.Text = "Descending";
+            this.radioButtonSortingOrderDesc.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonSortingOrderAsc
+            // 
+            this.radioButtonSortingOrderAsc.AutoSize = true;
+            this.radioButtonSortingOrderAsc.Checked = true;
+            this.radioButtonSortingOrderAsc.Location = new System.Drawing.Point(6, 23);
+            this.radioButtonSortingOrderAsc.Name = "radioButtonSortingOrderAsc";
+            this.radioButtonSortingOrderAsc.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonSortingOrderAsc.TabIndex = 0;
+            this.radioButtonSortingOrderAsc.TabStop = true;
+            this.radioButtonSortingOrderAsc.Text = "Ascending";
+            this.radioButtonSortingOrderAsc.UseVisualStyleBackColor = true;
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(426, 171);
+            this.ClientSize = new System.Drawing.Size(426, 249);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.bgStats);
@@ -109,6 +149,8 @@
             this.Text = "Options";
             this.bgStats.ResumeLayout(false);
             this.bgStats.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -120,5 +162,8 @@
         private System.Windows.Forms.CheckBox checkboxAllowStats;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButtonSortingOrderDesc;
+        private System.Windows.Forms.RadioButton radioButtonSortingOrderAsc;
     }
 }
