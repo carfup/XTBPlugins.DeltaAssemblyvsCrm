@@ -25,5 +25,10 @@ namespace Carfup.XTBPlugins.Forms
         {
             this.Close();
         }
+
+        private void buttonOpenProjectPage_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/carfup/XTBPlugins.DeltaAssemblyvsCrm/");
+        }
     }
 }
