@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -153,11 +154,13 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                         }
 
                         listOfPluginsTypeInAssembly = loadedAssemblyTypes
-                        .Where(
-                            t => t.FullName != null && (!(t.FullName.Contains("<>c")) && // standards classes
-                                (
-                                    t.GetInterfaces().Contains(typeof(IPlugin)) || t.GetInterfaces().Contains(typeof(IPluginExecutionContext)) || // plugins
-                                    (t.BaseType != null && t.BaseType.Name == "CodeActivity") // workflows
+                            .Where(
+                                t => t.FullName != null && (!(t.FullName.Contains("<>c")) && // standards classes
+                                                            (
+                                                                t.GetInterfaces().Contains(typeof(IPlugin)) ||
+                                                                t.GetInterfaces().Contains(typeof(IPluginExecutionContext)) ||
+                                                                t.GetInterfaces().Contains(typeof(PluginBase)) || // plugins
+                                                                (t.IsSubclassOf(typeof(CodeActivity)))// workflows
                                 ))
                         ).ToList();
                     },
