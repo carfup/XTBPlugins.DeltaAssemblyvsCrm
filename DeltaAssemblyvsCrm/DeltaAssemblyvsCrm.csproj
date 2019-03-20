@@ -230,6 +230,6 @@
       <ILRepackPackage Include="..\packages\ilrepack.*\tools\ilrepack.exe" />
     </ItemGroup>
     <Error Condition="!Exists(@(ILRepackPackage->'%(FullPath)'))" Text="You are trying to use the ILRepack package, but it is not installed or at the correct location '(@(ILRepackPackage-&gt;'%(FullPath))'" />
-    <Exec Command="@(ILRepackPackage->'%(fullpath)') /out:$(OutputPath)Merged\$(AssemblyName)LOL.dll /target:library $(OutputPath)$(AssemblyName).dll @(MergeAssemblies->'%(FullPath)', ' ')" />
+    <Exec Command="@(ILRepackPackage->'%(fullpath)') /out:$(OutputPath)Merged\$(AssemblyName).dll /target:library $(OutputPath)$(AssemblyName).dll @(MergeAssemblies->'%(FullPath)', ' ')" />
   </Target>
 </Project>
