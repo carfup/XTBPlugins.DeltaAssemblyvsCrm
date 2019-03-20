@@ -1,7 +1,7 @@
 ﻿<package>
   <metadata>
     <id>Carfup.XTBPlugins.DeltaAssemblyvsCrm</id>
-    <version>1.2019.3.21</version>
+    <version>1.2019.3.22</version>
     <title>Delta Plugins : Local Assembly vs CRM</title>
     <authors>Clement O.</authors>
     <owners>Clement O.</owners>
@@ -11,8 +11,9 @@
     <description>Find out which Plugin differences you have between your CRM Assembly and your Local one.</description>
     <summary>Really sweet plugin that does awesome things to help CRM developers everyday.</summary>
     <releaseNotes>
-1.2019.3.21
+1.2019.3.22
 Loading assembly will now retrieve properly the Workflows which are linked to a subclass of CodeActivity.
+Added a quick button to access the project page from the help window.
 
 1.2018.7.20
 Reordering results.
