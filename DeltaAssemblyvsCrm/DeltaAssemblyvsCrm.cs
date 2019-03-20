@@ -327,7 +327,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                 Work = (bw, evt) =>
                 {
                     // We have at least one workflow
-                    if (listOfPluginsTypeInAssembly.Count(t => t.BaseType != null && t.BaseType.Name == "CodeActivity") == 0)
+                    if (listOfPluginsTypeInAssembly.Count(t => t.IsSubclassOf(typeof(CodeActivity))) == 0)
                     {
                         this.Invoke(new Action(() => {
                             // removing the event to not fire the event
@@ -349,7 +349,7 @@ namespace Carfup.XTBPlugins.DeltaAssemblyvsCrm
                     if(checkBoxCompareWorkflows.Checked)
                     {
                         inCrmToCompare.AddRange(listOfPluginsTypesInCRM.Where(x => x.GetAttributeValue<bool>("isworkflowactivity") == true).ToList());
-                        inAssemblyToCompare.AddRange(listOfPluginsTypeInAssembly.Where(t => t.BaseType != null && t.BaseType.Name == "CodeActivity").ToList());
+                        inAssemblyToCompare.AddRange(listOfPluginsTypeInAssembly.Where(t => t.IsSubclassOf(typeof(CodeActivity))).ToList());
                     }
 
                     inCRMButAssembly = inCrmToCompare.Select(x => x.GetAttributeValue<string>("name")).Except(inAssemblyToCompare.Select(x => x.FullName)).ToArray();
